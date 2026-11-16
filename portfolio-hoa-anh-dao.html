@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#efddff">
+<title>Giới thiệu | Tống Khánh Linh</title>
+<style>
+  :root{--blue1:#e6f4ff;--blue2:#bfe3fb;--blue3:#8ccbf0;--blue4:#4aa3d8;--deep:#1f5f8f;--text:#1d3b57}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:var(--text);line-height:1.7;min-height:100vh;overflow-x:hidden;
+    background:linear-gradient(125deg,#ffffff,#d9f0ff,#9fd6f5,#f4fbff,#7cc3ee,#e8f7ff,#ffffff);
+    background-size:400% 400%;background-attachment:fixed;animation:ocean 22s ease-in-out infinite}
+  @keyframes ocean{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  #sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .wave{position:absolute;left:-50%;width:200%;height:220px;border-radius:45%;background:rgba(255,255,255,.22);animation:wv linear infinite}
+  @keyframes wv{from{transform:translateX(0) rotate(0)}to{transform:translateX(25%) rotate(360deg)}}
+  .float{position:absolute;top:-40px;animation:fall linear infinite;opacity:.85;text-shadow:0 0 8px #fff,0 0 14px rgba(255,255,255,.9)}
+  @keyframes fall{0%{transform:translate(0,-5vh) rotate(0);opacity:0}10%{opacity:.95}50%{transform:translate(30px,55vh) rotate(180deg)}100%{transform:translate(-20px,110vh) rotate(360deg);opacity:.2}}
+  .twinkle{position:absolute;color:#fff;animation:tw 2.4s ease-in-out infinite;text-shadow:0 0 6px #fff,0 0 12px var(--blue3)}
+  @keyframes tw{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.3)}}
+  .glit{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 8px 3px rgba(255,255,255,.9),0 0 14px 5px rgba(140,203,240,.7);animation:tw 1.8s ease-in-out infinite}
+  .cloud{position:absolute;left:-160px;opacity:.85;animation:drift linear infinite;filter:drop-shadow(0 4px 8px rgba(74,163,216,.25))}
+  @keyframes drift{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 340px))}}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border-bottom:2px solid var(--blue2);box-shadow:0 4px 18px rgba(74,163,216,.18)}
+  .nav{max-width:1000px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:10px 18px;flex-wrap:wrap;gap:8px}
+  .logo{font-weight:700;color:var(--deep);font-size:1.15rem}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .tab{border:none;cursor:pointer;padding:9px 18px;border-radius:999px;font-size:.98rem;font-weight:600;color:var(--deep);background:var(--blue1);transition:.25s}
+  .tab:hover{background:var(--blue2);transform:translateY(-2px)}
+  .tab.active{background:linear-gradient(135deg,var(--blue4),#7fc4ee);color:#fff;box-shadow:0 4px 12px rgba(74,163,216,.5)}
+
+  main{position:relative;z-index:5;max-width:1000px;margin:26px auto 40px;padding:0 16px}
+  .page{display:none;animation:fade .6s}
+  .page.show{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .card{background:rgba(255,255,255,.82);backdrop-filter:blur(4px);border:2px solid #fff;border-radius:26px;padding:26px;margin-bottom:22px;box-shadow:0 8px 28px rgba(74,163,216,.22);position:relative}
+  h1,h2,h3{color:var(--deep)}
+  h2{margin-bottom:12px;font-size:1.5rem}
+  h2::after{content:" ✦ ✿";color:var(--blue3);font-size:1rem}
+  h3{margin:16px 0 6px;font-size:1.1rem}
+  ul{padding-left:22px}
+  li{margin:6px 0}
+  li::marker{content:"✿  ";color:var(--blue4)}
+
+  .hero{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+  .avwrap{position:relative;flex-shrink:0;margin-top:34px}
+  .crown{position:absolute;left:50%;top:-52px;width:110px;height:70px;transform:translateX(-50%);z-index:3;animation:crownb 3s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(200,150,0,.45))}
+  @keyframes crownb{50%{transform:translateX(-50%) translateY(-5px) rotate(2deg)}}
+  .crown .sp{animation:tw 1.6s infinite;transform-origin:center;transform-box:fill-box}
+  .avatar{width:240px;height:320px;border-radius:120px 120px 24px 24px;overflow:hidden;border:5px solid #fff;
+    box-shadow:0 0 0 4px var(--blue3),0 10px 24px rgba(74,163,216,.4);background:var(--blue2);position:relative;display:flex;align-items:center;justify-content:center}
+  .avatar img{width:100%;height:100%;object-fit:cover;display:none}
+  .avatar.has img{display:block}
+  .pick{display:none;cursor:pointer;padding:10px 16px;border-radius:999px;background:#fff;color:var(--deep);font-weight:700;border:2px dashed var(--blue4);text-align:center;font-size:.9rem}
+  .avatar:not(.has) .pick{display:block}
+  .hero-text{flex:1;min-width:240px}
+  .hero-text h1{font-size:2rem}
+  .sub{color:var(--blue4);font-weight:600;margin-bottom:10px}
+  .quote{margin-top:14px;padding:14px 18px;border-left:5px solid var(--blue3);background:var(--blue1);border-radius:14px;font-style:italic}
+  .cat{width:70px;height:70px;position:absolute;right:14px;top:-34px;animation:bob 3s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(-8px) rotate(4deg)}}
+  .btn{display:inline-block;margin-top:8px;border:none;cursor:pointer;padding:12px 26px;border-radius:999px;font-size:1rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--blue4),#7fc4ee);box-shadow:0 6px 16px rgba(74,163,216,.45);transition:.25s;text-decoration:none}
+  .btn:hover{transform:translateY(-3px)}
+  .cta{text-align:right}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+  .proj{background:linear-gradient(160deg,#fff,var(--blue1));border-radius:22px;padding:20px;border:2px solid var(--blue2);transition:.3s;position:relative}
+  .proj:hover{box-shadow:0 12px 26px rgba(74,163,216,.35)}
+  .badge{display:inline-block;background:var(--blue4);color:#fff;padding:3px 14px;border-radius:999px;font-size:.8rem;font-weight:700}
+  .proj h3{margin:10px 0 6px}
+  .proof{margin-top:10px;padding:8px 12px;background:#fff;border-radius:12px;font-size:.9rem;border:1px dashed var(--blue3);color:var(--deep)}
+  .deco{position:absolute;right:12px;top:10px;color:var(--blue3);font-size:1.3rem}
+  .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .acts .btn{margin:0;padding:9px 18px;font-size:.92rem}
+  .btn.alt{background:#fff;color:var(--deep);border:2px solid var(--blue3);box-shadow:none}
+  .btn.off{opacity:.45;pointer-events:none;filter:grayscale(.4)}
+  .viewer{display:none;margin-top:12px;border-radius:14px;overflow:hidden;border:2px solid var(--blue2);background:#fff}
+  .viewer.open{display:block}
+  .viewer iframe{width:100%;height:480px;border:0}
+  .final{background:linear-gradient(135deg,#e1f3ff,#fff4fa);border:2px dashed var(--blue3)}
+
+  footer{position:relative;z-index:5;color:#fff;padding:70px 16px 28px;
+    background:radial-gradient(circle at 90% 10%,rgba(140,203,240,.55),transparent 40%),linear-gradient(160deg,#0f3d66 0%,#1f5f8f 55%,#3a8fc7 100%)}
+  .foot{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.4fr 1fr;gap:44px;align-items:start}
+  .eyebrow{letter-spacing:.2em;font-size:.85rem;font-weight:600;margin-bottom:8px}
+  footer h2.big{font-family:Georgia,"Times New Roman",serif;color:#fff;font-size:2rem;margin-bottom:26px}
+  footer h2.big::after{content:""}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  label{display:block;font-weight:700;font-size:.95rem;margin:0 0 8px}
+  input,textarea{width:100%;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.16);color:#fff;border-radius:16px;padding:16px;font:inherit;outline:none}
+  input:focus,textarea:focus{border-color:#fff;background:rgba(255,255,255,.25)}
+  textarea{height:170px;resize:vertical;margin-bottom:18px}
+  .send{border:none;cursor:pointer;background:#e6f4ff;color:var(--deep);font-weight:700;font-size:1.1rem;padding:16px 34px;border-radius:999px;transition:.25s;margin-top:18px}
+  .send:hover{transform:translateY(-2px);background:#fff}
+  .info{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);border-radius:28px;padding:32px}
+  .info h3{font-family:Georgia,serif;color:#fff;font-size:1.5rem;margin:0 0 22px}
+  .info small{display:block;letter-spacing:.15em;font-weight:700;font-size:.8rem}
+  .info .v{font-weight:700;font-size:1.25rem;margin-bottom:16px;word-break:break-all}
+  .info hr{border:0;border-top:1px solid rgba(255,255,255,.35);margin:18px 0}
+  .info p{font-size:1.05rem}
+  .copy{text-align:center;margin-top:50px;font-weight:600}
+  .status{margin-top:10px;font-size:.9rem;min-height:1.2em}
+  .corner-cat{position:fixed;right:10px;bottom:6px;width:90px;height:90px;z-index:30;animation:bob 3s infinite;cursor:pointer}
+  @media(max-width:800px){.foot{grid-template-columns:1fr}.row{grid-template-columns:1fr}.hero{justify-content:center;text-align:center}.corner-cat{width:64px;height:64px}.viewer iframe{height:360px}}
+
+/* ===== Khu vườn cầu vồng thơ mộng ===== */
+:root{--rose:#ffd7e8;--peach:#ffe7cf;--sun:#fff5bb;--mint:#d9f8e5;--aqua:#d8f6fc;--lavender:#eadfff;--pink:#ffe4f1}
+body{
+  background:linear-gradient(115deg,
+    #ffe3eb 0%,#ffecdd 14%,#fff4c6 28%,#def9e6 42%,
+    #d9f5fc 56%,#e4e4ff 70%,#f4dfff 84%,#ffe3eb 100%);
+  background-size:340% 340%;background-attachment:fixed;
+  animation:rainbowDaydream 32s ease-in-out infinite;
+}
+@keyframes rainbowDaydream{0%,100%{background-position:0% 48%}50%{background-position:100% 52%}}
+body::before{content:"";position:fixed;inset:-22%;z-index:0;pointer-events:none;
+  background:radial-gradient(circle at 14% 30%,rgba(255,205,226,.44),transparent 34%),
+             radial-gradient(circle at 76% 22%,rgba(211,241,255,.52),transparent 30%),
+             radial-gradient(circle at 59% 76%,rgba(241,225,255,.47),transparent 38%);
+  animation:auroraSway 26s ease-in-out infinite alternate;filter:blur(16px)}
+@keyframes auroraSway{0%{transform:translate(-4%,1%) rotate(-4deg)}100%{transform:translate(4%,-2%) rotate(5deg)}}
+#sky{isolation:isolate;z-index:0}
+.wave{background:rgba(255,255,255,.12)!important;filter:blur(32px)}
+.float{will-change:transform;filter:drop-shadow(0 1px 4px rgba(255,255,255,.75));
+  animation:petalDream linear infinite!important;opacity:.86}
+@keyframes petalDream{
+  0%{transform:translate3d(-20px,-12vh,0) rotate(0) scale(.78);opacity:0}
+  8%{opacity:.82}
+  27%{transform:translate3d(45px,25vh,0) rotate(115deg) scale(1)}
+  58%{transform:translate3d(-32px,59vh,0) rotate(290deg) scale(.9)}
+  93%{opacity:.88}
+  100%{transform:translate3d(65px,115vh,0) rotate(560deg) scale(.8);opacity:0}
+}
+.cloud{left:-180px;opacity:.8;filter:drop-shadow(0 5px 12px rgba(123,170,214,.15));
+  animation:cloudWander ease-in-out infinite alternate!important;will-change:transform}
+@keyframes cloudWander{0%{transform:translate3d(-40px,8px,0)}100%{transform:translate3d(calc(100vw + 230px),-22px,0)}}
+.twinkle{color:#fff;filter:drop-shadow(0 0 5px #fff);text-shadow:0 0 8px #fff,0 0 16px #ffb9eb,0 0 22px #b8dcff}
+.glit{background:#fff;box-shadow:0 0 7px 2px #fff,0 0 13px 5px rgba(252,181,228,.5),0 0 17px 8px rgba(172,225,255,.4)}
+.sky-kitty{position:absolute;width:68px;height:76px;pointer-events:none;opacity:.52;
+  animation:floatKitten 7s ease-in-out infinite alternate;filter:drop-shadow(0 4px 7px rgba(197,145,207,.16))}
+@keyframes floatKitten{0%{transform:translate(-10px,0) rotate(-8deg)}100%{transform:translate(18px,-26px) rotate(7deg)}}
+header{background:rgba(255,255,255,.82);border-bottom:2px solid transparent;
+  box-shadow:0 6px 25px rgba(142,119,180,.16);}
+header::after{content:"";display:block;height:4px;
+  background:linear-gradient(90deg,#f7a0bd,#ffd4a0,#f8e58e,#abe3b3,#9fdfec,#b9b4fb,#e0b0ed,#f7a0bd);
+  background-size:200% 100%;animation:rainbowLine 13s linear infinite}
+@keyframes rainbowLine{to{background-position:200% 0}}
+.logo{background:linear-gradient(100deg,#a65f9d,#b47b71,#71966b,#418eb1,#7269ac);
+  -webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.17rem}
+.tab{background:#fff7ff;color:#6c6491;border:1px solid #f2d9f5}
+.tab:hover{background:#f7eafb}
+.tab.active{background:linear-gradient(125deg,#b78fe6,#e8a6c6,#9ab8ee);color:#fff;
+  box-shadow:0 4px 12px rgba(159,118,194,.3)}
+.card{background:rgba(255,255,255,.88);box-shadow:0 12px 30px rgba(151,130,187,.18),0 0 0 1px rgba(255,255,255,.9)}
+h1,h2,h3{color:#725a9b}
+h2::after{color:#d39fc9}
+.quote{border-left:5px solid #dbacd6;background:linear-gradient(100deg,#f9ecff,#fff5f9)}
+.sub{color:#9d72b3}
+.proj{border:2px solid transparent;
+  background:linear-gradient(160deg,rgba(255,255,255,.98),rgba(255,245,252,.98)) padding-box,
+             linear-gradient(110deg,#ffc0ce,#ffd9aa,#f3e3a8,#b2e7c4,#addfeb,#c4c0f8,#edc0ef) border-box;
+  box-shadow:0 8px 23px rgba(179,149,199,.1);overflow:hidden;padding-bottom:16px}
+.proj:hover{box-shadow:0 13px 30px rgba(179,149,199,.2);transform:translateY(-3px)}
+.proj .deco{display:none}
+.badge{background:linear-gradient(110deg,#c18bca,#e5a4c4);position:relative;z-index:2}
+.proj .proj-kitten{position:absolute;right:12px;top:3px;width:62px;height:66px;z-index:1;
+  animation:kittyBounce 4s ease-in-out infinite;pointer-events:none}
+.proj .proj-kitten svg{width:100%;height:100%;filter:drop-shadow(0 4px 5px rgba(169,120,156,.15))}
+@keyframes kittyBounce{0%,100%{transform:rotate(-5deg) translateY(0)}50%{transform:rotate(5deg) translateY(-6px)}}
+.proj h3{padding-right:12px}
+.btn{background:linear-gradient(110deg,#b58adc,#edadd0,#98c9ee);box-shadow:0 5px 14px rgba(168,129,188,.2)}
+.btn.alt{background:#fff;color:#795a9b;border-color:#ddbee6}
+.proof{border-color:#e8ceef;background:#fffafd}
+.final{background:linear-gradient(120deg,rgba(253,239,255,.91),rgba(255,248,228,.91));border:2px dashed #e9bade}
+.cat{filter:drop-shadow(0 6px 9px rgba(179,137,191,.18))}
+/* Mèo con xinh và vườn hoa trải dài trước chân trang */
+.kitty-meadow{position:relative;z-index:5;max-width:1000px;margin:0 auto 30px;
+  background:linear-gradient(110deg,rgba(255,255,255,.81),rgba(255,248,254,.91));
+  border:2px solid rgba(255,255,255,.96);box-shadow:0 10px 24px rgba(170,143,197,.14);
+  border-radius:30px;padding:14px 18px 12px;overflow:hidden}
+.kitty-meadow .meadow-caption{text-align:center;color:#8a6a9b;font-size:1rem;font-weight:700;letter-spacing:.03em}
+.kitten-line{display:flex;align-items:end;justify-content:space-evenly;gap:3px;position:relative;
+  border-bottom:5px solid #cbe9d4;border-radius:50%}
+.kitten-line svg{width:clamp(50px,8vw,90px);height:clamp(59px,9vw,104px);
+  flex-shrink:1;animation:kittyBounce 3.5s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(175,138,190,.1))}
+.kitten-line svg:nth-child(2n){animation-delay:-1.1s}.kitten-line svg:nth-child(3n){animation-delay:-2.2s}
+.meadow-flora{text-align:center;font-size:1.5rem;letter-spacing:.7rem;white-space:normal;margin:4px 0}
+footer{position:relative;z-index:5;color:#fff;padding:68px 16px 26px;
+  background:radial-gradient(circle at 87% 8%,rgba(255,201,227,.22),transparent 35%),
+  linear-gradient(125deg,#605884 0%,#6b609b 33%,#586d9b 63%,#427b98 100%);
+  box-shadow:0 -9px 28px rgba(177,130,192,.15)}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;
+  background:linear-gradient(90deg,#ffbed1,#ffe2b0,#f9edb1,#bfeec7,#b6eaff,#c5c6ff,#efc5ef);}
+footer h2.big{font-family:Georgia,"Times New Roman",serif;color:white;
+  font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.35;max-width:540px}
+.info{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.32);
+  box-shadow:inset 0 1px rgba(255,255,255,.2)}
+.info .v{font-size:1.05rem;overflow-wrap:anywhere;word-break:normal}
+.info p{font-size:1rem;line-height:1.85}
+footer label{color:#fff;font-weight:650}
+footer input,footer textarea{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.6)}
+footer input:focus,footer textarea:focus{background:rgba(255,255,255,.22);border-color:#fff}
+.send{background:linear-gradient(110deg,#ffe0eb,#eef0ff);color:#624d86;box-shadow:0 6px 15px rgba(38,35,85,.16)}
+.copy{margin:36px auto 0;padding:25px 15px 0;border-top:1px solid rgba(255,255,255,.38);
+  max-width:1100px;text-align:center;font-weight:500;line-height:1.65}
+.copy-main{font-size:1.03rem;font-weight:700;letter-spacing:.025em;color:#fff}
+.copy-sub{font-size:.93rem;color:#fff4fa;opacity:.95;margin-top:6px}
+.copy-flower{color:#ffe4f4;font-size:1.35rem;display:block;margin-bottom:4px;letter-spacing:.3em}
+.corner-cat{filter:drop-shadow(0 8px 13px rgba(167,119,177,.25));}
+.motion-toggle{position:fixed;z-index:40;left:12px;bottom:12px;padding:8px 13px;
+  border-radius:25px;border:1px solid #ead8f2;background:rgba(255,255,255,.88);
+  color:#725a90;font:600 .78rem "Segoe UI",sans-serif;cursor:pointer;box-shadow:0 3px 15px rgba(137,107,158,.15)}
+.motion-toggle:hover{background:#fff}
+html.motion-paused *,html.motion-paused *::before,html.motion-paused *::after{animation-play-state:paused!important}
+@media(max-width:700px){
+ .kitty-meadow{margin:0 16px 18px;padding:12px 5px;border-radius:22px}
+ .kitten-line svg:nth-child(n+6){display:none}
+ .meadow-flora{letter-spacing:.18rem;font-size:1.1rem}
+ .sky-kitty:nth-last-of-type(n+4){display:none}
+ .proj .proj-kitten{width:53px;height:58px}
+ .motion-toggle{bottom:10px;left:10px;padding:6px 10px}
+ footer{padding-top:44px}
+ .copy{margin-top:20px}
+}
+@media(prefers-reduced-motion:reduce){
+ html:not(.motion-forced) *,html:not(.motion-forced) *::before,html:not(.motion-forced) *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+}
+
+
+/* ===== BẢN NÂNG CẤP: CHIBI THẬT · MÂY THƠ MỘNG · CẦU VỒNG LẤP LÁNH ===== */
+:root{--chibi-img:url("assets/cherry-assets/sticker-01.webp");}
+body{
+ background:linear-gradient(116deg,#ffd9e9 0%,#ffe9d3 14%,#fff4ba 28%,#d8f7df 42%,#cceffa 56%,#d9e1ff 70%,#efd4fa 84%,#ffd9e9 100%);
+ background-size:600% 600%;background-attachment:fixed;
+ animation:rainbowFusion 18s linear infinite!important;
+}
+@keyframes rainbowFusion{0%{background-position:0% 45%}25%{background-position:38% 80%}50%{background-position:100% 53%}75%{background-position:56% 5%}100%{background-position:0% 45%}}
+body::before{background:radial-gradient(ellipse at 10% 35%,rgba(255,177,222,.46),transparent 38%),radial-gradient(ellipse at 77% 24%,rgba(172,235,255,.56),transparent 38%),radial-gradient(ellipse at 55% 88%,rgba(232,190,255,.4),transparent 36%),radial-gradient(ellipse at 35% 8%,rgba(255,242,158,.5),transparent 40%);animation:auroraDance 13s ease-in-out infinite alternate!important;filter:blur(35px)}
+@keyframes auroraDance{0%{transform:translate3d(-5%,-2%,0) rotate(-6deg) scale(1)}100%{transform:translate3d(5%,3%,0) rotate(7deg) scale(1.1)}}
+header::after,footer::before{background-size:350% 100%;animation:rainbowLine 9s linear infinite!important}
+#sky{pointer-events:none;overflow:hidden;z-index:0}
+.float{animation:petalSwirl linear infinite!important;will-change:transform;filter:drop-shadow(0 2px 4px rgba(255,255,255,.96)) drop-shadow(0 0 4px rgba(246,158,222,.55))}
+@keyframes petalSwirl{
+0%{transform:translate3d(0,-12vh,0) rotate(0) scale(.66);opacity:0}
+9%{opacity:.97}
+25%{transform:translate3d(42px,28vh,0) rotate(100deg) scale(1.12)}
+52%{transform:translate3d(-33px,53vh,0) rotate(255deg) scale(.87)}
+78%{transform:translate3d(48px,83vh,0) rotate(375deg) scale(1.05)}
+95%{opacity:.88}
+100%{transform:translate3d(-30px,112vh,0) rotate(540deg) scale(.83);opacity:0}
+}
+.spark-fall{position:absolute;top:-18vh;line-height:1;user-select:none;pointer-events:none;color:white;will-change:transform,opacity;
+ text-shadow:0 0 5px white,0 0 11px #fff,0 0 18px #ffb4dd,0 0 25px #99dcff;
+ animation:sparkleRain linear infinite;}
+.spark-fall.gold{color:#ffec98;text-shadow:0 0 5px white,0 0 11px #fff9bb,0 0 20px #ffbda5}
+.spark-fall.lilac{color:#f5e4ff;text-shadow:0 0 6px white,0 0 12px #ebbdff,0 0 21px #bda7ff}
+@keyframes sparkleRain{
+0%{transform:translate3d(0,-13vh,0) scale(.42) rotate(0);opacity:0}
+12%{opacity:1}
+35%{transform:translate3d(42px,35vh,0) scale(1.12) rotate(100deg);opacity:.92}
+65%{transform:translate3d(-40px,72vh,0) scale(.75) rotate(225deg);opacity:1}
+89%{opacity:.9}
+100%{transform:translate3d(28px,129vh,0) scale(.55) rotate(400deg);opacity:0}
+}
+.twinkle,.glit{animation-duration:1.25s!important;text-shadow:0 0 7px white,0 0 13px #fff,0 0 18px #ffb9eb,0 0 27px #b8dcff}
+.cloud{animation:cloudVoyage linear infinite!important;left:-22vw;filter:drop-shadow(0 10px 15px rgba(169,179,221,.25));opacity:.88;will-change:transform}
+@keyframes cloudVoyage{0%{transform:translate3d(-20vw,0,0)}50%{transform:translate3d(65vw,-26px,0)}100%{transform:translate3d(140vw,4px,0)}}
+.cloud.backward{animation-name:cloudReverse!important;left:102vw}
+@keyframes cloudReverse{0%{transform:translate3d(15vw,0,0)}50%{transform:translate3d(-70vw,18px,0)}100%{transform:translate3d(-160vw,-8px,0)}}
+.chibi-art{display:block;width:100%;height:100%;background-image:var(--chibi-img);background-position:center;background-size:contain;background-repeat:no-repeat;filter:drop-shadow(0 5px 8px rgba(115,97,164,.18))}
+.cat.chibi-art{width:105px;height:110px;top:-48px;right:-5px;position:absolute;animation:catHello 4.5s ease-in-out infinite;z-index:3}
+@keyframes catHello{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-11px) rotate(4deg)}}
+.proj .proj-kitten{width:94px;height:94px;right:4px;top:0;animation:catHello 4s ease-in-out infinite;opacity:.97;z-index:1}
+.proj .proj-kitten .chibi-art{width:100%;height:100%}
+.proj .proj-kitten::before{content:'';position:absolute;inset:18% 7%;background:rgba(255,243,253,.45);border-radius:50%;z-index:-1}
+.proj h3{position:relative;z-index:2;max-width:92%}
+.corner-cat.chibi-art{width:98px;height:112px;position:fixed;right:6px;bottom:5px;cursor:pointer;animation:catHello 3.1s ease-in-out infinite;z-index:30;outline-offset:4px}
+.kitty-meadow{background:linear-gradient(115deg,rgba(255,251,254,.88),rgba(235,251,255,.89),rgba(255,250,232,.88));border:2px solid rgba(255,255,255,.96);}
+.kitten-line{gap:8px;display:flex;align-items:flex-end;justify-content:space-evenly;padding:2px 9px 8px;min-height:125px;border-bottom:5px solid #ccebd3}
+.meadow-kitten{width:clamp(88px,11vw,138px);height:clamp(91px,12vw,145px);display:block;flex:0 1 auto;animation:catHello 3.6s ease-in-out infinite;transform-origin:bottom center}
+.meadow-kitten:nth-child(2){animation-delay:-1.1s}.meadow-kitten:nth-child(3){animation-delay:-2.2s}.meadow-kitten:nth-child(4){animation-delay:-.4s}.meadow-kitten:nth-child(5){animation-delay:-1.7s}.meadow-kitten:nth-child(6){animation-delay:-2.9s}
+.sky-kitty.chibi-art{position:absolute;display:block;pointer-events:none;opacity:.64;width:92px;height:100px;animation:kittyFloat 7s ease-in-out infinite alternate;will-change:transform}
+@keyframes kittyFloat{0%{transform:translate3d(-8px,3px,0) rotate(-6deg)}100%{transform:translate3d(25px,-23px,0) rotate(6deg)}}
+/* Chân trang: sửa khoảng cách ký tự và khoảng cách chữ tiếng Việt. */
+footer{font-family:"Segoe UI",Arial,sans-serif;word-spacing:normal;letter-spacing:normal;text-rendering:optimizeLegibility}
+footer *,footer *::before,footer *::after{word-spacing:normal;letter-spacing:normal}
+footer .foot{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);column-gap:32px;row-gap:26px;align-items:start}
+footer .eyebrow{font-size:.88rem;font-weight:700;line-height:1.55;letter-spacing:.03em!important}
+footer h2.big{font-family:"Segoe UI",Arial,sans-serif;font-size:clamp(1.4rem,2.55vw,1.95rem);line-height:1.5;margin:9px 0 24px;word-break:normal;overflow-wrap:break-word}
+footer .row{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+footer label{font-size:1rem;line-height:1.45;display:block;margin-bottom:8px;white-space:normal}
+footer input,footer textarea{font-size:1rem;line-height:1.55;min-width:0;padding:13px 14px;border-radius:12px;letter-spacing:normal}
+footer .info{min-width:0;padding:28px 26px;border-radius:24px}
+footer .info h3{font-family:"Segoe UI",Arial,sans-serif;font-size:1.48rem;line-height:1.38;margin-bottom:19px}
+footer .info small{font-size:.85rem;letter-spacing:.02em!important;line-height:1.4;margin:15px 0 5px}
+footer .info .v{font-size:1.02rem;font-weight:650;line-height:1.65;margin-bottom:15px;word-break:normal;overflow-wrap:anywhere}
+footer .info p{font-size:1rem;line-height:1.8;text-align:left;word-break:normal;overflow-wrap:break-word;hyphens:none;margin:0}
+footer .copy{padding-top:18px;margin-top:32px;line-height:1.75;text-align:center}
+footer .copy-main{font-size:.99rem;font-weight:650;line-height:1.7;letter-spacing:0!important;word-spacing:normal}
+footer .copy-sub{font-size:.95rem;line-height:1.8;letter-spacing:0!important;max-width:680px;margin:7px auto 0}
+footer .copy-dot{padding:0 8px;color:#ffe7f6}
+footer .copy-flower{letter-spacing:.12em!important}
+@media(max-width:760px){footer .foot{grid-template-columns:minmax(0,1fr);gap:28px}footer .info{padding:24px 19px}footer .row{grid-template-columns:minmax(0,1fr)}.cat.chibi-art{width:75px;height:80px;right:-2px;top:-36px}.proj .proj-kitten{width:77px;height:81px}.corner-cat.chibi-art{width:74px;height:87px}.kitten-line{min-height:88px;gap:1px;padding:0 2px 7px}.meadow-kitten{width:22%;height:90px}.meadow-kitten:nth-child(n+5){display:none}.sky-kitty.chibi-art:nth-child(n+5){display:none}}
+
+
+/* ===== BẢN CHỈNH CUỐI: NÚT GOOGLE DRIVE · MÂY ĐU ĐƯA · MÈO SIÊU CUTE ===== */
+.summary-drive{position:relative;isolation:isolate;overflow:hidden;text-align:center;margin:26px 0 12px;
+ padding:27px 22px 26px;border-radius:28px;border:2px solid rgba(255,255,255,.95);
+ background:linear-gradient(120deg,rgba(255,243,251,.96),rgba(244,242,255,.96),rgba(233,250,255,.94),rgba(255,250,235,.97));
+ box-shadow:0 13px 35px rgba(161,128,193,.16);}
+.summary-drive::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.65;
+ background:radial-gradient(circle at 12% 20%,rgba(255,179,212,.45),transparent 28%),radial-gradient(circle at 87% 72%,rgba(172,222,255,.54),transparent 32%);}
+.summary-drive h3{font-size:clamp(1.18rem,2.5vw,1.48rem);margin:5px 0 6px;color:#7c57a5}
+.summary-drive p{max-width:620px;margin:0 auto 14px;color:#685e84;line-height:1.8}
+.summary-drive-decor{font-size:1.55rem;letter-spacing:.3rem;animation:tinyDance 4s ease-in-out infinite}
+.drive-flowers{margin-top:15px;letter-spacing:.6rem;animation:tinyDance 4.5s ease-in-out infinite reverse;font-size:1.2rem}
+.drive-open-button{display:inline-flex;justify-content:center;align-items:center;gap:12px;white-space:nowrap;
+ min-height:54px;padding:12px 30px;border-radius:999px;font-weight:750;font-size:1.03rem;color:white;text-decoration:none;
+ background:linear-gradient(100deg,#a989ec,#ed9fc6,#a9c6f7,#a989ec);background-size:280% 100%;
+ box-shadow:0 7px 20px rgba(172,112,194,.3),inset 0 1px 2px rgba(255,255,255,.6);
+ border:2px solid rgba(255,255,255,.95);transition:transform .25s,box-shadow .25s;animation:driveGlow 9s ease-in-out infinite;}
+.drive-open-button:hover,.drive-open-button:focus-visible{transform:translateY(-3px) scale(1.025);box-shadow:0 10px 25px rgba(174,107,189,.42);color:#fff}
+.drive-open-button:focus-visible{outline:3px solid #7857c3;outline-offset:4px}
+@keyframes driveGlow{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+@keyframes tinyDance{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+/* Thẻ dự án rộng rãi hơn để hình mèo không che tên bài tập. */
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));}
+.proj h3{max-width:calc(100% - 84px);padding-right:0;line-height:1.45;min-height:43px}
+@media(max-width:700px){.proj h3{max-width:calc(100% - 67px)}}
+/* Các chú mèo trên thẻ và khu vườn có thêm nơ, tim và đồ trang trí. */
+.proj .proj-kitten{overflow:visible}
+.proj .proj-kitten .kitty-sticker{position:absolute;top:0;right:1px;font-size:1.45rem;
+ line-height:1;filter:drop-shadow(0 2px 2px white);animation:stickerBounce 2.8s ease-in-out infinite;}
+.proj:nth-child(2n) .kitty-sticker{animation-delay:-1s}
+.proj .proj-kitten::after{content:'✦';position:absolute;right:76%;top:0;color:#ffcbe8;font-size:1.1rem;
+ text-shadow:0 0 8px #fff,0 0 12px #e7a9e8;animation:tw 2.2s infinite}
+@keyframes stickerBounce{0%,100%{transform:rotate(-14deg) scale(.9)}50%{transform:rotate(12deg) scale(1.16)}}
+.meadow-kitten{position:relative;overflow:visible}
+.meadow-kitten::after{content:'🎀';position:absolute;right:3%;top:4%;font-size:1.4rem;animation:stickerBounce 3s infinite}
+.meadow-kitten:nth-child(2)::after{content:'🍓'}
+.meadow-kitten:nth-child(3)::after{content:'💖'}
+.meadow-kitten:nth-child(4)::after{content:'🌸'}
+.meadow-kitten:nth-child(5)::after{content:'🎀'}
+.meadow-kitten:nth-child(6)::after{content:'🌟'}
+.cat.chibi-art::after,.corner-cat.chibi-art::after{content:'💗';position:absolute;top:5%;right:-8%;font-size:1.3rem;
+ animation:stickerBounce 3s ease-in-out infinite;filter:drop-shadow(0 2px 3px white)}
+.corner-cat.chibi-art::after{content:'🎀';right:0;top:4%}
+/* Mây trôi hai chiều qua lại nhịp nhàng, thay hoàn toàn các chú mèo bay trên nền. */
+#sky .sky-kitty{display:none!important}
+#sky .cloud{left:0;opacity:.82;filter:drop-shadow(0 8px 12px rgba(149,171,218,.21));
+ animation:cloudSway var(--cloud-speed,42s) ease-in-out infinite!important;will-change:transform}
+#sky .cloud.backward{animation-name:cloudSwayReverse!important}
+@keyframes cloudSway{0%,100%{transform:translate3d(-27vw,6px,0)}50%{transform:translate3d(27vw,-12px,0)}}
+@keyframes cloudSwayReverse{0%,100%{transform:translate3d(25vw,-10px,0)}50%{transform:translate3d(-25vw,12px,0)}}
+/* Hoa và cánh hoa rơi liên tục, tỏa sáng vừa đủ không che nội dung. */
+#sky .float{opacity:.86;will-change:transform;filter:drop-shadow(0 1px 2px #fff) drop-shadow(0 0 3px rgba(255,192,225,.8))}
+#sky .petal-soft{font-size:1rem;color:#ffc1d6;opacity:.75;filter:drop-shadow(0 0 3px #fff);
+ animation:petalSwirl linear infinite!important}
+@media(max-width:700px){.summary-drive{margin:18px 0;padding:23px 15px}.drive-flowers{letter-spacing:.22rem;font-size:1rem}
+ .proj .proj-kitten .kitty-sticker{font-size:1.15rem}.summary-drive-decor{letter-spacing:.1rem;font-size:1.3rem}
+ .meadow-kitten::after{font-size:1.08rem}}
+@media(prefers-reduced-motion:reduce){html:not(.motion-forced) .summary-drive-decor,html:not(.motion-forced) .drive-flowers{animation:none}}
+
+
+/* ===== TỐI ƯU HIỆU NĂNG: giữ màu pastel, mây, hoa, sao và mèo ===== */
+body{background-attachment:scroll!important;animation:none!important;
+  background-size:100% 100%!important}
+body::before{animation:none!important;filter:none!important;inset:0!important}
+.wave{display:none!important}
+header,.card{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+#sky .cloud{filter:none!important}
+#sky .float{filter:none!important;text-shadow:0 0 4px rgba(255,255,255,.95)!important}
+#sky .spark-fall{text-shadow:0 0 5px rgba(255,255,255,.85),0 0 9px rgba(251,187,229,.35)!important}
+#sky .twinkle{filter:none!important;text-shadow:0 0 5px #fff!important}
+#sky .glit{box-shadow:0 0 7px 2px rgba(255,255,255,.8)!important}
+#sky .cloud,#sky .float,#sky .spark-fall{backface-visibility:hidden}
+.pdf-loading{padding:18px;color:#725a9b;text-align:center;background:#fff;font-size:.94rem}
+html.preview-active #sky *,html.view-hidden *,html.view-hidden *::before,html.view-hidden *::after{
+ animation-play-state:paused!important}
+@media(max-width:700px){.viewer iframe{height:min(68vh,500px)}}
+@media(prefers-reduced-motion:reduce){html:not(.motion-forced) #sky{display:none}}
+
+
+/* ===== MÂY QUA LẠI NHANH + BẦU TRỜI LẤP LÁNH (bản nhẹ) ===== */
+#sky .cloud {
+  left:0!important;
+  opacity:.82;
+  animation:cloudAcross var(--cloud-speed,11s) linear infinite alternate!important;
+  animation-direction:alternate!important;
+  will-change:transform;
+}
+#sky .cloud.backward {
+  left:0!important;
+  animation-name:cloudAcrossReverse!important;
+  animation-direction:alternate!important;
+}
+/* Mỗi lần tới mép bên kia, mây quay lại thay vì biến mất. */
+@keyframes cloudAcross {
+  0%{transform:translate3d(-12vw,4px,0)}
+  50%{transform:translate3d(48vw,-12px,0)}
+  100%{transform:translate3d(calc(100vw - var(--cloud-width,120px)),8px,0)}
+}
+@keyframes cloudAcrossReverse {
+  0%{transform:translate3d(calc(100vw - var(--cloud-width,120px)),-4px,0)}
+  50%{transform:translate3d(45vw,11px,0)}
+  100%{transform:translate3d(-12vw,-8px,0)}
+}
+#sky .sparkle-canvas {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:block}
+#sky .twinkle {text-shadow:0 0 7px #fff,0 0 10px rgba(217,121,198,.65)!important}
+#sky .glit {box-shadow:0 0 6px 2px #fff,0 0 10px 3px rgba(228,148,238,.48)!important}
+html.preview-active #sky .sparkle-canvas{opacity:.18}
+@media(max-width:700px){#sky .cloud{opacity:.68}}
+
+
+/* ===== KHU VƯỜN MÈO DÂU PASTEL - tham chiếu ảnh do người dùng cung cấp ===== */
+:root{
+  --p-cat-strawberry:url("assets/cherry-assets/sticker-02.webp");
+  --p-cat-sleep:url("assets/cherry-assets/sticker-03.webp");
+  --p-cat-box:url("assets/cherry-assets/sticker-04.webp");
+  --p-cat-white:url("assets/cherry-assets/sticker-05.webp");
+  --p-cat-bow:url("assets/cherry-assets/sticker-06.webp");
+  --p-cat-cup:url("assets/cherry-assets/sticker-07.webp");
+  --p-cat-gray:url("assets/cherry-assets/sticker-08.webp");
+  --p-cat-cardboard:url("assets/cherry-assets/sticker-09.webp");
+  --p-cat-lying:url("assets/cherry-assets/sticker-10.webp");
+  --p-cherry:url("assets/cherry-assets/sticker-11.webp");
+  --p-strawberry:url("assets/cherry-assets/sticker-12.webp");
+  --p-strawberry2:url("assets/cherry-assets/sticker-13.webp");
+  --p-flower:url("assets/cherry-assets/sticker-14.webp");
+  --p-flower2:url("assets/cherry-assets/sticker-15.webp");
+  --p-bow:url("assets/cherry-assets/sticker-16.webp");
+  --p-heart:url("assets/cherry-assets/sticker-17.webp");
+  --p-wallpaper:url("assets/cherry-assets/sticker-18.webp");
+}
+/* Họa tiết chìm từ ảnh gốc, nằm sau thẻ nội dung, không làm khó đọc */
+body::before{content:""!important;position:fixed!important;inset:0!important;
+ background-image:var(--p-wallpaper)!important;background-repeat:repeat!important;
+ background-size:355px auto!important;background-position:center top!important;
+ opacity:.17!important;pointer-events:none!important;z-index:0!important;
+ filter:none!important;animation:none!important;transform:none!important}
+body{background-image:linear-gradient(125deg,#fff0f4,#fff9f7,#ffeaf5,#f8ebff,#eaf6ff,#fff2f7)!important;
+ background-size:100% 100%!important;animation:none!important}
+.card{border:1.5px solid rgba(255,255,255,.96)!important;
+ background:rgba(255,255,255,.92)!important;box-shadow:0 9px 26px rgba(201,135,175,.13),0 0 0 1px rgba(255,221,236,.4)!important}
+header{background:rgba(255,248,252,.95)!important}
+.tab.active{background:linear-gradient(120deg,#e9a6c3,#d6aee8,#a5cdee)!important}
+/* Từ ảnh mẫu: mèo má hồng, dâu, hộp quà và tách trà */
+.chibi-art{background-image:var(--p-cat-strawberry)!important;background-repeat:no-repeat!important;
+ background-position:center!important;background-size:contain!important;}
+.cat.chibi-art{background-image:var(--p-cat-sleep)!important;width:126px!important;height:112px!important;
+ right:5px!important;top:-52px!important;filter:none!important}
+#p3 .cat.chibi-art{background-image:var(--p-cat-box)!important}
+.proj .proj-kitten{right:4px!important;top:0!important;width:98px!important;height:97px!important}
+.proj:nth-child(6n+1) .chibi-art{background-image:var(--p-cat-strawberry)!important}
+.proj:nth-child(6n+2) .chibi-art{background-image:var(--p-cat-bow)!important}
+.proj:nth-child(6n+3) .chibi-art{background-image:var(--p-cat-cardboard)!important}
+.proj:nth-child(6n+4) .chibi-art{background-image:var(--p-cat-gray)!important}
+.proj:nth-child(6n+5) .chibi-art{background-image:var(--p-cat-cup)!important}
+.proj:nth-child(6n+6) .chibi-art{background-image:var(--p-cat-box)!important}
+.corner-cat.chibi-art{background-image:var(--p-cat-cup)!important;width:95px!important;height:103px!important;filter:none!important}
+.meadow-kitten .chibi-art{height:100%!important;width:100%!important}
+.meadow-kitten:nth-child(1) .chibi-art{background-image:var(--p-cat-strawberry)!important}
+.meadow-kitten:nth-child(2) .chibi-art{background-image:var(--p-cat-sleep)!important}
+.meadow-kitten:nth-child(3) .chibi-art{background-image:var(--p-cat-bow)!important}
+.meadow-kitten:nth-child(4) .chibi-art{background-image:var(--p-cat-cup)!important}
+.meadow-kitten:nth-child(5) .chibi-art{background-image:var(--p-cat-gray)!important}
+.meadow-kitten:nth-child(6) .chibi-art{background-image:var(--p-cat-cardboard)!important}
+.kitty-meadow{background:linear-gradient(115deg,rgba(255,249,252,.96),rgba(255,237,246,.96))!important;
+ border-color:#fff!important;}
+/* Vòng hoa dâu phía trên phần giới thiệu */
+.pastel-banner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;
+ margin:0 0 22px;padding:9px 17px;min-height:91px;gap:8px;overflow:hidden;
+ border:2px solid white;border-radius:29px;
+ background:linear-gradient(110deg,rgba(255,228,240,.91),rgba(255,247,235,.94),rgba(252,235,250,.92));
+ box-shadow:0 7px 22px rgba(226,150,186,.17)}
+.pastel-banner .motif{flex:none;display:block; width:75px;height:74px;
+ background-repeat:no-repeat;background-position:center;background-size:contain;
+ animation:motifBob 3.3s ease-in-out infinite alternate}
+.pastel-banner .motif:nth-child(even){animation-delay:-1.4s}
+.pastel-banner .motif.cup{background-image:var(--p-cat-cup)}
+.pastel-banner .motif.sleep{background-image:var(--p-cat-sleep)}
+.pastel-banner .motif.fruit{background-image:var(--p-cherry);width:62px;height:70px}
+.pastel-banner .motif.bow{background-image:var(--p-bow);width:53px;height:56px}
+.pastel-banner .garden-words{font-size:clamp(.95rem,2.5vw,1.18rem);font-weight:750;
+ text-align:center;color:#a26b8c;letter-spacing:.025em;line-height:1.55}
+@keyframes motifBob{0%{transform:translateY(3px) rotate(-5deg)}100%{transform:translateY(-6px) rotate(5deg)}}
+/* Hoa, cherry, dâu tây và nơ CẮT TỪ ẢNH MẪU bay trong nền */
+#sky .pastel-fall{position:absolute;top:-110px;display:block;z-index:1;opacity:0;
+ background-repeat:no-repeat;background-position:center;background-size:contain;
+ pointer-events:none;user-select:none;will-change:transform;
+ animation:pastelFloatFall var(--fall-speed,20s) linear infinite!important;}
+#sky .pastel-fall.strawberry{background-image:var(--p-strawberry)}
+#sky .pastel-fall.strawberry2{background-image:var(--p-strawberry2)}
+#sky .pastel-fall.cherry{background-image:var(--p-cherry)}
+#sky .pastel-fall.flower{background-image:var(--p-flower)}
+#sky .pastel-fall.flower2{background-image:var(--p-flower2)}
+#sky .pastel-fall.bow{background-image:var(--p-bow)}
+#sky .pastel-fall.heart{background-image:var(--p-heart)}
+@keyframes pastelFloatFall{
+ 0%{transform:translate3d(-15px,-15vh,0) rotate(-25deg) scale(.76);opacity:0}
+ 9%{opacity:.92}
+ 28%{transform:translate3d(42px,28vh,0) rotate(80deg) scale(1)}
+ 57%{transform:translate3d(-28px,60vh,0) rotate(200deg) scale(.95)}
+ 88%{opacity:.90}
+ 100%{transform:translate3d(39px,120vh,0) rotate(385deg) scale(.78);opacity:0}
+}
+/* Lấp lánh hiện có, chỉ tăng sắc pastel nhẹ thay vì tăng tải CPU */
+#sky .spark-fall{color:#fff1fa}
+#sky .twinkle{color:#f8d5ed}
+#sky .cloud{opacity:.78!important}
+@media(max-width:700px){
+ body::before{background-size:300px auto!important;opacity:.12!important}
+ .pastel-banner{min-height:75px;padding:6px 6px;border-radius:20px;gap:4px}
+ .pastel-banner .motif{width:48px;height:57px}
+ .pastel-banner .motif.fruit{width:39px;height:50px}
+ .pastel-banner .motif.bow{display:none}
+ .pastel-banner .garden-words{font-size:.84rem}
+ .cat.chibi-art{width:91px!important;height:89px!important;right:0!important;top:-38px!important}
+ .proj .proj-kitten{width:81px!important;height:83px!important}
+ .corner-cat.chibi-art{width:76px!important;height:85px!important}
+}
+@media(prefers-reduced-motion:reduce){html:not(.motion-forced) .pastel-banner .motif{animation:none}}
+
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="kitten" viewBox="0 0 100 100">
+  <path d="M18 40 L22 8 L44 24 Z" fill="#fff" stroke="#8ccbf0" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M82 40 L78 8 L56 24 Z" fill="#fff" stroke="#8ccbf0" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M24 30 L26 17 L35 25Z M76 30 L74 17 L65 25Z" fill="#ffc8e0"/>
+  <ellipse cx="50" cy="58" rx="38" ry="33" fill="#fff" stroke="#8ccbf0" stroke-width="3"/>
+  <ellipse cx="36" cy="55" rx="5" ry="6.5" fill="#1d3b57"/><ellipse cx="64" cy="55" rx="5" ry="6.5" fill="#1d3b57"/>
+  <circle cx="38" cy="52.5" r="2" fill="#fff"/><circle cx="66" cy="52.5" r="2" fill="#fff"/>
+  <ellipse cx="25" cy="68" rx="7" ry="4.5" fill="#ffc8e0" opacity=".8"/><ellipse cx="75" cy="68" rx="7" ry="4.5" fill="#ffc8e0" opacity=".8"/>
+  <path d="M46 64 L54 64 L50 69Z" fill="#f48fb1"/>
+  <path d="M50 69 Q44 76 38 71 M50 69 Q56 76 62 71" fill="none" stroke="#1d3b57" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M8 60 L26 63 M8 70 L26 68 M92 60 L74 63 M92 70 L74 68" stroke="#8ccbf0" stroke-width="2" stroke-linecap="round"/>
+  <g transform="translate(70 8)"><circle r="6" fill="#ffc8e0"/><circle cx="-7" cy="-2" r="5" fill="#ffd9ea"/><circle cx="7" cy="-2" r="5" fill="#ffd9ea"/><circle cx="-4" cy="6" r="5" fill="#ffd9ea"/><circle cx="4" cy="6" r="5" fill="#ffd9ea"/><circle r="3.5" fill="#ffe27a"/></g>
+</symbol>
+<symbol id="cloudS" viewBox="0 0 120 60">
+  <path d="M25 50 Q4 50 6 34 Q8 20 26 22 Q30 6 50 8 Q68 4 76 20 Q98 14 104 32 Q116 36 112 46 Q108 52 98 50 Z" fill="#fff"/>
+  <path d="M30 46 Q60 54 96 46" fill="none" stroke="#d6edfc" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="47" cy="34" r="2.2" fill="#a9bbdb" opacity=".72"/><circle cx="74" cy="34" r="2.2" fill="#a9bbdb" opacity=".72"/>
+  <ellipse cx="39" cy="39" rx="5" ry="2.6" fill="#f9cfdd" opacity=".72"/><ellipse cx="82" cy="39" rx="5" ry="2.6" fill="#f9cfdd" opacity=".72"/>
+  <path d="M57 37 Q61 41 65 37" fill="none" stroke="#b5bddb" opacity=".65" stroke-width="1.7" stroke-linecap="round"/>
+</symbol>
+<symbol id="crownS" viewBox="0 0 110 70">
+  <defs><linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2a8"/><stop offset=".5" stop-color="#ffd54a"/><stop offset="1" stop-color="#e0a21a"/></linearGradient></defs>
+  <path d="M10 58 L6 18 L30 36 L55 8 L80 36 L104 18 L100 58 Z" fill="url(#gold)" stroke="#c98a10" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="10" y="52" width="90" height="10" rx="4" fill="#ffd54a" stroke="#c98a10" stroke-width="2"/>
+  <circle cx="6" cy="16" r="5" fill="#fff" stroke="#c98a10" stroke-width="2"/>
+  <circle cx="55" cy="7" r="6" fill="#8ccbf0" stroke="#c98a10" stroke-width="2"/>
+  <circle cx="104" cy="16" r="5" fill="#fff" stroke="#c98a10" stroke-width="2"/>
+  <circle cx="30" cy="57" r="3.5" fill="#8ccbf0"/><circle cx="55" cy="57" r="3.5" fill="#ffc8e0"/><circle cx="80" cy="57" r="3.5" fill="#8ccbf0"/>
+  <path class="sp" d="M20 28 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="#fff"/>
+  <path class="sp" style="animation-delay:.7s" d="M88 30 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="#fff"/>
+</symbol>
+<symbol id="kitty-peach" viewBox="0 0 110 118">
+      <path d="M79 96 Q108 84 95 63" fill="none" stroke="#e6ad96" stroke-width="12" stroke-linecap="round"/>
+      <ellipse cx="55" cy="92" rx="30" ry="22" fill="#fff0de" stroke="#e6ad96" stroke-width="2.5"/>
+      <ellipse cx="36" cy="105" rx="12" ry="8" fill="#fff0de" stroke="#e6ad96" stroke-width="2"/>
+      <ellipse cx="74" cy="105" rx="12" ry="8" fill="#fff0de" stroke="#e6ad96" stroke-width="2"/>
+      <path d="M18 43 L20 10 L46 28 Z M90 43 L89 10 L65 29 Z" fill="#fff0de" stroke="#e6ad96" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 25 L27 16 L37 27 Z M82 25 L82 16 L74 27 Z" fill="#f8bad0"/>
+      <ellipse cx="55" cy="58" rx="39" ry="33" fill="#fff0de" stroke="#e6ad96" stroke-width="2.8"/>
+      
+      <ellipse cx="25" cy="69" rx="8" ry="5" fill="#ffbed4" opacity=".85"/><ellipse cx="86" cy="69" rx="8" ry="5" fill="#ffbed4" opacity=".85"/>
+      <ellipse cx="42" cy="55" rx="4.5" ry="6" fill="#45394d"/><ellipse cx="71" cy="55" rx="4.5" ry="6" fill="#45394d"/><circle cx="43" cy="52.7" r="1.5" fill="white"/><circle cx="72" cy="52.7" r="1.5" fill="white"/>
+      <path d="M51 66 Q55 63 59 66 L55 71 Z" fill="#e981a8"/>
+      <path d="M55 70 Q49 77 45 72 M55 70 Q61 77 66 72" fill="none" stroke="#665267" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M17 65 L34 67 M17 74 L34 71 M94 65 L77 67 M94 74 L77 71" stroke="#e6ad96" stroke-width="1.7" stroke-linecap="round"/>
+      <g transform="translate(27 97)"><circle r="4" fill="#fff9bb" stroke="#d6a76c" stroke-width="1"/></g>
+    </symbol>
+<symbol id="kitty-gold" viewBox="0 0 110 118">
+      <path d="M79 96 Q108 84 95 63" fill="none" stroke="#caa16f" stroke-width="12" stroke-linecap="round"/>
+      <ellipse cx="55" cy="92" rx="30" ry="22" fill="#ffe6a9" stroke="#caa16f" stroke-width="2.5"/>
+      <ellipse cx="36" cy="105" rx="12" ry="8" fill="#ffe6a9" stroke="#caa16f" stroke-width="2"/>
+      <ellipse cx="74" cy="105" rx="12" ry="8" fill="#ffe6a9" stroke="#caa16f" stroke-width="2"/>
+      <path d="M18 43 L20 10 L46 28 Z M90 43 L89 10 L65 29 Z" fill="#ffe6a9" stroke="#caa16f" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 25 L27 16 L37 27 Z M82 25 L82 16 L74 27 Z" fill="#f8bad0"/>
+      <ellipse cx="55" cy="58" rx="39" ry="33" fill="#ffe6a9" stroke="#caa16f" stroke-width="2.8"/>
+      <path d="M54 32 L55 39 M46 33 L49 39 M63 33 L61 39" fill="none" stroke="#caa16f" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+      <ellipse cx="25" cy="69" rx="8" ry="5" fill="#ffbbce" opacity=".85"/><ellipse cx="86" cy="69" rx="8" ry="5" fill="#ffbbce" opacity=".85"/>
+      <ellipse cx="42" cy="55" rx="4.5" ry="6" fill="#45394d"/><ellipse cx="71" cy="55" rx="4.5" ry="6" fill="#45394d"/><circle cx="43" cy="52.7" r="1.5" fill="white"/><circle cx="72" cy="52.7" r="1.5" fill="white"/>
+      <path d="M51 66 Q55 63 59 66 L55 71 Z" fill="#e981a8"/>
+      <path d="M55 70 Q49 77 45 72 M55 70 Q61 77 66 72" fill="none" stroke="#665267" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M17 65 L34 67 M17 74 L34 71 M94 65 L77 67 M94 74 L77 71" stroke="#caa16f" stroke-width="1.7" stroke-linecap="round"/>
+      <g transform="translate(27 97)"><circle r="4" fill="#fff9bb" stroke="#d6a76c" stroke-width="1"/></g>
+    </symbol>
+<symbol id="kitty-lilac" viewBox="0 0 110 118">
+      <path d="M79 96 Q108 84 95 63" fill="none" stroke="#b7a2cf" stroke-width="12" stroke-linecap="round"/>
+      <ellipse cx="55" cy="92" rx="30" ry="22" fill="#efe2ff" stroke="#b7a2cf" stroke-width="2.5"/>
+      <ellipse cx="36" cy="105" rx="12" ry="8" fill="#efe2ff" stroke="#b7a2cf" stroke-width="2"/>
+      <ellipse cx="74" cy="105" rx="12" ry="8" fill="#efe2ff" stroke="#b7a2cf" stroke-width="2"/>
+      <path d="M18 43 L20 10 L46 28 Z M90 43 L89 10 L65 29 Z" fill="#efe2ff" stroke="#b7a2cf" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 25 L27 16 L37 27 Z M82 25 L82 16 L74 27 Z" fill="#f8bad0"/>
+      <ellipse cx="55" cy="58" rx="39" ry="33" fill="#efe2ff" stroke="#b7a2cf" stroke-width="2.8"/>
+      
+      <ellipse cx="25" cy="69" rx="8" ry="5" fill="#ffd1e2" opacity=".85"/><ellipse cx="86" cy="69" rx="8" ry="5" fill="#ffd1e2" opacity=".85"/>
+      <path d="M36 56 Q42 62 48 56 M65 56 Q71 62 77 56" fill="none" stroke="#52475b" stroke-width="2.7" stroke-linecap="round"/>
+      <path d="M51 66 Q55 63 59 66 L55 71 Z" fill="#e981a8"/>
+      <path d="M55 70 Q49 77 45 72 M55 70 Q61 77 66 72" fill="none" stroke="#665267" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M17 65 L34 67 M17 74 L34 71 M94 65 L77 67 M94 74 L77 71" stroke="#b7a2cf" stroke-width="1.7" stroke-linecap="round"/>
+      <g transform="translate(83 24)"><path d="M0 4 Q-18 -10 -13 8 L0 9 Q16 -9 15 8 Z" fill="#ffa5cc" stroke="#e878a9" stroke-width="1.5"/><circle cx="0" cy="7" r="4" fill="#fff5ac"/></g>
+    </symbol>
+<symbol id="kitty-cloud" viewBox="0 0 110 118">
+      <path d="M79 96 Q108 84 95 63" fill="none" stroke="#9cb9d2" stroke-width="12" stroke-linecap="round"/>
+      <ellipse cx="55" cy="92" rx="30" ry="22" fill="#fffdfb" stroke="#9cb9d2" stroke-width="2.5"/>
+      <ellipse cx="36" cy="105" rx="12" ry="8" fill="#fffdfb" stroke="#9cb9d2" stroke-width="2"/>
+      <ellipse cx="74" cy="105" rx="12" ry="8" fill="#fffdfb" stroke="#9cb9d2" stroke-width="2"/>
+      <path d="M18 43 L20 10 L46 28 Z M90 43 L89 10 L65 29 Z" fill="#fffdfb" stroke="#9cb9d2" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 25 L27 16 L37 27 Z M82 25 L82 16 L74 27 Z" fill="#f8bad0"/>
+      <ellipse cx="55" cy="58" rx="39" ry="33" fill="#fffdfb" stroke="#9cb9d2" stroke-width="2.8"/>
+      
+      <ellipse cx="25" cy="69" rx="8" ry="5" fill="#ffc6dd" opacity=".85"/><ellipse cx="86" cy="69" rx="8" ry="5" fill="#ffc6dd" opacity=".85"/>
+      <ellipse cx="42" cy="55" rx="4.5" ry="6" fill="#45394d"/><ellipse cx="71" cy="55" rx="4.5" ry="6" fill="#45394d"/><circle cx="43" cy="52.7" r="1.5" fill="white"/><circle cx="72" cy="52.7" r="1.5" fill="white"/>
+      <path d="M51 66 Q55 63 59 66 L55 71 Z" fill="#e981a8"/>
+      <path d="M55 70 Q49 77 45 72 M55 70 Q61 77 66 72" fill="none" stroke="#665267" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M17 65 L34 67 M17 74 L34 71 M94 65 L77 67 M94 74 L77 71" stroke="#9cb9d2" stroke-width="1.7" stroke-linecap="round"/>
+      <g transform="translate(83 24)"><path d="M0 4 Q-18 -10 -13 8 L0 9 Q16 -9 15 8 Z" fill="#ffa5cc" stroke="#e878a9" stroke-width="1.5"/><circle cx="0" cy="7" r="4" fill="#fff5ac"/></g>
+    </symbol>
+<symbol id="kitty-ginger" viewBox="0 0 110 118">
+      <path d="M79 96 Q108 84 95 63" fill="none" stroke="#c3946e" stroke-width="12" stroke-linecap="round"/>
+      <ellipse cx="55" cy="92" rx="30" ry="22" fill="#ffd4b5" stroke="#c3946e" stroke-width="2.5"/>
+      <ellipse cx="36" cy="105" rx="12" ry="8" fill="#ffd4b5" stroke="#c3946e" stroke-width="2"/>
+      <ellipse cx="74" cy="105" rx="12" ry="8" fill="#ffd4b5" stroke="#c3946e" stroke-width="2"/>
+      <path d="M18 43 L20 10 L46 28 Z M90 43 L89 10 L65 29 Z" fill="#ffd4b5" stroke="#c3946e" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 25 L27 16 L37 27 Z M82 25 L82 16 L74 27 Z" fill="#f8bad0"/>
+      <ellipse cx="55" cy="58" rx="39" ry="33" fill="#ffd4b5" stroke="#c3946e" stroke-width="2.8"/>
+      <path d="M54 32 L55 39 M46 33 L49 39 M63 33 L61 39" fill="none" stroke="#c3946e" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+      <ellipse cx="25" cy="69" rx="8" ry="5" fill="#ffbec9" opacity=".85"/><ellipse cx="86" cy="69" rx="8" ry="5" fill="#ffbec9" opacity=".85"/>
+      <ellipse cx="42" cy="55" rx="4.5" ry="6" fill="#45394d"/><ellipse cx="71" cy="55" rx="4.5" ry="6" fill="#45394d"/><circle cx="43" cy="52.7" r="1.5" fill="white"/><circle cx="72" cy="52.7" r="1.5" fill="white"/>
+      <path d="M51 66 Q55 63 59 66 L55 71 Z" fill="#e981a8"/>
+      <path d="M55 70 Q49 77 45 72 M55 70 Q61 77 66 72" fill="none" stroke="#665267" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M17 65 L34 67 M17 74 L34 71 M94 65 L77 67 M94 74 L77 71" stroke="#c3946e" stroke-width="1.7" stroke-linecap="round"/>
+      <g transform="translate(27 97)"><circle r="4" fill="#fff9bb" stroke="#d6a76c" stroke-width="1"/></g>
+    </symbol>
+<symbol id="kitty-mint" viewBox="0 0 110 118">
+      <path d="M79 96 Q108 84 95 63" fill="none" stroke="#95c9b0" stroke-width="12" stroke-linecap="round"/>
+      <ellipse cx="55" cy="92" rx="30" ry="22" fill="#e1fff1" stroke="#95c9b0" stroke-width="2.5"/>
+      <ellipse cx="36" cy="105" rx="12" ry="8" fill="#e1fff1" stroke="#95c9b0" stroke-width="2"/>
+      <ellipse cx="74" cy="105" rx="12" ry="8" fill="#e1fff1" stroke="#95c9b0" stroke-width="2"/>
+      <path d="M18 43 L20 10 L46 28 Z M90 43 L89 10 L65 29 Z" fill="#e1fff1" stroke="#95c9b0" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 25 L27 16 L37 27 Z M82 25 L82 16 L74 27 Z" fill="#f8bad0"/>
+      <ellipse cx="55" cy="58" rx="39" ry="33" fill="#e1fff1" stroke="#95c9b0" stroke-width="2.8"/>
+      
+      <ellipse cx="25" cy="69" rx="8" ry="5" fill="#ffc4d8" opacity=".85"/><ellipse cx="86" cy="69" rx="8" ry="5" fill="#ffc4d8" opacity=".85"/>
+      <path d="M36 56 Q42 62 48 56 M65 56 Q71 62 77 56" fill="none" stroke="#52475b" stroke-width="2.7" stroke-linecap="round"/>
+      <path d="M51 66 Q55 63 59 66 L55 71 Z" fill="#e981a8"/>
+      <path d="M55 70 Q49 77 45 72 M55 70 Q61 77 66 72" fill="none" stroke="#665267" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M17 65 L34 67 M17 74 L34 71 M94 65 L77 67 M94 74 L77 71" stroke="#95c9b0" stroke-width="1.7" stroke-linecap="round"/>
+      <g transform="translate(83 24)"><path d="M0 4 Q-18 -10 -13 8 L0 9 Q16 -9 15 8 Z" fill="#ffa5cc" stroke="#e878a9" stroke-width="1.5"/><circle cx="0" cy="7" r="4" fill="#fff5ac"/></g>
+    </symbol>
+<symbol id="kitty-gray" viewBox="0 0 110 118">
+      <path d="M79 96 Q108 84 95 63" fill="none" stroke="#9cabc9" stroke-width="12" stroke-linecap="round"/>
+      <ellipse cx="55" cy="92" rx="30" ry="22" fill="#e5e9f5" stroke="#9cabc9" stroke-width="2.5"/>
+      <ellipse cx="36" cy="105" rx="12" ry="8" fill="#e5e9f5" stroke="#9cabc9" stroke-width="2"/>
+      <ellipse cx="74" cy="105" rx="12" ry="8" fill="#e5e9f5" stroke="#9cabc9" stroke-width="2"/>
+      <path d="M18 43 L20 10 L46 28 Z M90 43 L89 10 L65 29 Z" fill="#e5e9f5" stroke="#9cabc9" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 25 L27 16 L37 27 Z M82 25 L82 16 L74 27 Z" fill="#f8bad0"/>
+      <ellipse cx="55" cy="58" rx="39" ry="33" fill="#e5e9f5" stroke="#9cabc9" stroke-width="2.8"/>
+      <path d="M54 32 L55 39 M46 33 L49 39 M63 33 L61 39" fill="none" stroke="#9cabc9" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+      <ellipse cx="25" cy="69" rx="8" ry="5" fill="#ffc2df" opacity=".85"/><ellipse cx="86" cy="69" rx="8" ry="5" fill="#ffc2df" opacity=".85"/>
+      <ellipse cx="42" cy="55" rx="4.5" ry="6" fill="#45394d"/><ellipse cx="71" cy="55" rx="4.5" ry="6" fill="#45394d"/><circle cx="43" cy="52.7" r="1.5" fill="white"/><circle cx="72" cy="52.7" r="1.5" fill="white"/>
+      <path d="M51 66 Q55 63 59 66 L55 71 Z" fill="#e981a8"/>
+      <path d="M55 70 Q49 77 45 72 M55 70 Q61 77 66 72" fill="none" stroke="#665267" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M17 65 L34 67 M17 74 L34 71 M94 65 L77 67 M94 74 L77 71" stroke="#9cabc9" stroke-width="1.7" stroke-linecap="round"/>
+      <g transform="translate(27 97)"><circle r="4" fill="#fff9bb" stroke="#d6a76c" stroke-width="1"/></g>
+    </symbol>
+</defs></svg>
+
+<div id="sky"></div>
+
+<header><div class="nav">
+  <div class="logo">🐱 Tống Khánh Linh ✦ Portfolio</div>
+  <nav class="tabs">
+    <button class="tab active" data-page="p1">✿ Giới thiệu</button>
+    <button class="tab" data-page="p2">✦ Dự án</button>
+    <button class="tab" data-page="p3">★ Tổng kết</button>
+  </nav>
+</div></header>
+
+<main>
+<div class="pastel-banner" aria-label="Trang trí mèo và trái cây pastel từ ảnh mẫu">
+ <span class="motif sleep" aria-hidden="true"></span>
+ <span class="motif fruit" aria-hidden="true"></span>
+ <span class="garden-words">🌸 Khu vườn mèo nhỏ · Hoa xinh &amp; trái ngọt 🍓</span>
+ <span class="motif bow" aria-hidden="true"></span>
+ <span class="motif cup" aria-hidden="true"></span>
+</div>
+<section class="page show" id="p1">
+  <div class="card">
+    <span class="cat chibi-art" role="img" aria-label="Mèo chibi đáng yêu"></span>
+    <div class="hero">
+      <div class="avwrap">
+        <svg class="crown"><use href="#crownS"/></svg>
+        <div class="avatar" id="avatar">
+          <img id="photo" src="anh-chan-dung.jpg" alt="Ảnh chân dung Tống Khánh Linh">
+          <label class="pick" for="file">📷 Chọn ảnh của bạn</label>
+          <input type="file" id="file" accept="image/*" hidden>
+        </div>
+      </div>
+      <div class="hero-text">
+        <h1>Tống Khánh Linh</h1>
+        <p class="sub">Sinh viên Sư phạm Âm nhạc · Mã sinh viên: 2552210138</p>
+        <p>Hiện đang theo học ngành Sư phạm Âm nhạc tại Trường Đại học Sư phạm Nghệ thuật Trung ương. Với niềm đam mê nghệ thuật và mong muốn theo đuổi sự nghiệp giáo dục, tôi luôn chú trọng trau dồi kiến thức chuyên môn, rèn luyện kỹ năng biểu diễn và phát triển khả năng sáng tạo trong âm nhạc.</p>
+        <div class="quote">“Mỗi người đều có một giai điệu riêng. Giáo dục âm nhạc không chỉ giúp người học hiểu về nghệ thuật mà còn khơi dậy cảm xúc, sự sáng tạo và khả năng thể hiện bản thân.”</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Sở thích, năng khiếu và thế mạnh</h2>
+    <ul>
+      <li><b>Thanh nhạc và biểu diễn:</b> Yêu thích ca hát, rèn luyện kỹ năng thanh nhạc và sự tự tin trên sân khấu.</li>
+      <li><b>Thực hành nhạc cụ:</b> Luyện tập Piano, Organ và Guitar để nâng cao khả năng đệm hát và giảng dạy.</li>
+      <li><b>Lý thuyết âm nhạc và hòa thanh:</b> Quan tâm đến nhạc lý, cấu trúc hợp âm và ứng dụng hòa thanh trong thực hành.</li>
+      <li><b>Cảm thụ âm nhạc:</b> Yêu thích khám phá các thể loại âm nhạc truyền thống và hiện đại.</li>
+      <li><b>Ứng dụng công nghệ:</b> Tìm hiểu ChatGPT, Canva, Suno AI, Moises AI và CapCut để hỗ trợ học tập và sáng tạo nội dung âm nhạc.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Kỹ năng đạt được sau học phần Nhập môn Công nghệ số</h2>
+    <p>Thông qua học phần, tôi được trang bị nhiều kiến thức và kỹ năng thiết thực, giúp nâng cao hiệu quả học tập và khả năng ứng dụng công nghệ trong ngành Sư phạm Âm nhạc. Đặc biệt, học phần giúp tôi tiếp cận những công cụ hiện đại, hỗ trợ quá trình sáng tạo và đổi mới phương pháp giảng dạy.</p>
+    <ul>
+      <li><b>Tìm kiếm và đánh giá thông tin:</b> Biết cách tra cứu, chọn lọc tài liệu học thuật đáng tin cậy, phục vụ việc nghiên cứu nhạc lý, lịch sử âm nhạc và phương pháp giảng dạy.</li>
+      <li><b>Ứng dụng trí tuệ nhân tạo (AI):</b> Sử dụng ChatGPT, Gemini và kỹ năng viết prompt để tóm tắt tài liệu, giải thích kiến thức chuyên ngành, xây dựng câu hỏi ôn tập và hỗ trợ học tập.</li>
+      <li><b>Sáng tạo nội dung số:</b> Ứng dụng Canva, CapCut, Suno AI và Moises AI để thiết kế bài thuyết trình, video minh họa, xử lý âm thanh và xây dựng học liệu âm nhạc.</li>
+      <li><b>Giao tiếp và hợp tác trực tuyến:</b> Sử dụng Google Meet, Zoom, Zalo, Google Docs và Trello để trao đổi, phân công nhiệm vụ và phối hợp thực hiện các dự án nhóm.</li>
+      <li><b>Quản lý và lưu trữ dữ liệu:</b> Thành thạo hơn các thao tác quản lý tệp tin, thư mục và sử dụng Google Drive để lưu trữ, chia sẻ tài liệu học tập.</li>
+      <li><b>Sử dụng công nghệ có trách nhiệm:</b> Nâng cao ý thức bảo mật thông tin, tôn trọng bản quyền và kiểm chứng nội dung do AI cung cấp.</li>
+    </ul>
+    <h3>Ý nghĩa đối với ngành Sư phạm Âm nhạc</h3>
+    <p>Những kỹ năng này giúp tôi chủ động hơn trong học tập, đồng thời tạo nền tảng để thiết kế bài giảng trực quan, xây dựng trò chơi âm nhạc và tổ chức các hoạt động tương tác sáng tạo. Qua đó, tôi nhận thấy việc kết hợp kiến thức âm nhạc, kỹ năng sư phạm và công nghệ số là yếu tố quan trọng để trở thành một giáo viên âm nhạc năng động, sáng tạo và thích ứng với xu hướng giáo dục hiện đại.</p>
+    <div class="cta"><button class="btn" onclick="show('p2')">Xem dự án →</button></div>
+  </div>
+</section>
+
+<section class="page" id="p2">
+  <div class="card"><h2>Dự án</h2><p>Sáu bài tập của học phần Nhập môn Công nghệ số, kèm minh chứng cho từng bài.</p></div>
+  <div class="grid">
+    <div class="proj" data-pdf="bai-tap-1.pdf"><span class="deco">✦</span><span class="proj-kitten" aria-hidden="true"><span class="chibi-art"></span><span class="kitty-sticker" aria-hidden="true">🎀</span></span><span class="badge">BÀI TẬP 01</span><h3>Quản lý tệp tin và thư mục</h3><p>Thiết lập cấu trúc thư mục khoa học, xây dựng quy tắc đặt tên tệp để quản lý tài liệu học tập hiệu quả.</p><div class="proof">📎 Minh chứng: Thao tác cơ bản với tệp tin và thư mục</div></div>
+    <div class="proj" data-pdf="bai-tap-2.pdf"><span class="deco">✿</span><span class="proj-kitten" aria-hidden="true"><span class="chibi-art"></span><span class="kitty-sticker" aria-hidden="true">💗</span></span><span class="badge">BÀI TẬP 02</span><h3>Tìm kiếm thông tin học thuật</h3><p>Vận dụng toán tử tìm kiếm nâng cao, chọn lọc và đánh giá độ tin cậy của các nguồn tài liệu học thuật.</p><div class="proof">📎 Minh chứng: Kết quả tìm kiếm và bảng đánh giá</div></div>
+    <div class="proj" data-pdf="bai-tap-3.pdf"><span class="deco">✦</span><span class="proj-kitten" aria-hidden="true"><span class="chibi-art"></span><span class="kitty-sticker" aria-hidden="true">🌟</span></span><span class="badge">BÀI TẬP 03</span><h3>Kỹ năng viết Prompt hiệu quả</h3><p>Xây dựng, điều chỉnh và tối ưu câu lệnh AI nhằm nâng cao chất lượng kết quả phục vụ học tập.</p><div class="proof">📎 Minh chứng: Viết prompt hiệu quả cho các tác vụ học tập</div></div>
+    <div class="proj" data-pdf="bai-tap-4.pdf"><span class="deco">✿</span><span class="proj-kitten" aria-hidden="true"><span class="chibi-art"></span><span class="kitty-sticker" aria-hidden="true">🎀</span></span><span class="badge">BÀI TẬP 04</span><h3>Hợp tác và làm việc nhóm trực tuyến</h3><p>Sử dụng công cụ số để giao tiếp, phân công nhiệm vụ, quản lý tiến độ và phối hợp thực hiện dự án nhóm.</p><div class="proof">📎 Minh chứng: Công cụ hợp tác trực tuyến cho dự án</div></div>
+    <div class="proj" data-pdf="bai-tap-5.pdf"><span class="deco">✦</span><span class="proj-kitten" aria-hidden="true"><span class="chibi-art"></span><span class="kitty-sticker" aria-hidden="true">🍓</span></span><span class="badge">BÀI TẬP 05</span><h3>Sáng tạo nội dung số bằng AI</h3><p>Khai thác công cụ AI tạo sinh để xây dựng và hoàn thiện sản phẩm truyền thông, hình ảnh hoặc video âm nhạc.</p><div class="proof">📎 Minh chứng: Trưng bày sản phẩm nội dung số hoàn thiện</div></div>
+    <div class="proj" data-pdf="bai-tap-6.pdf"><span class="deco">✿</span><span class="proj-kitten" aria-hidden="true"><span class="chibi-art"></span><span class="kitty-sticker" aria-hidden="true">🩷</span></span><span class="badge">BÀI TẬP 06</span><h3>Sử dụng AI có trách nhiệm</h3><p>Tìm hiểu đạo đức, bản quyền và tính trung thực học thuật; xây dựng nguyên tắc cá nhân khi sử dụng AI.</p><div class="proof">📎 Minh chứng: Phân tích chính sách và định hướng sử dụng AI của Đại học Quốc gia Hà Nội</div></div>
+  </div>
+</section>
+
+<section class="page" id="p3">
+  <div class="card"><h2>Những thuận lợi</h2>
+    <p>Trong quá trình học tập môn Công nghệ số và xây dựng Portfolio cá nhân, em đã có cơ hội tiếp cận với nhiều kiến thức và công cụ số hữu ích như ChatGPT, Gemini, Google Docs, Google Drive, Trello và Canva. Những công cụ này giúp em thuận tiện hơn trong việc tìm kiếm thông tin, quản lý tài liệu, thực hiện bài tập và phối hợp làm việc nhóm.</p>
+    <p style="margin-top:10px">Bên cạnh đó, sự hướng dẫn của giảng viên cùng với những kiến thức được học trên lớp đã giúp em từng bước làm quen và sử dụng công nghệ hiệu quả hơn. Việc xây dựng Portfolio cũng tạo điều kiện để em hệ thống lại kiến thức, tổng hợp các sản phẩm học tập và nhìn nhận sự tiến bộ của bản thân qua từng bài tập. Qua đó, em rèn luyện được tính chủ động, khả năng sáng tạo và kỹ năng tự học.</p></div>
+  <div class="card"><h2>Những khó khăn</h2>
+    <p>Ban đầu, do chưa thành thạo một số phần mềm và công cụ số nên em mất khá nhiều thời gian để tìm hiểu cách sử dụng. Đặc biệt, việc tìm kiếm nguồn thông tin đáng tin cậy, xây dựng câu lệnh phù hợp khi sử dụng AI và kiểm tra độ chính xác của nội dung đôi lúc còn gặp nhiều hạn chế.</p>
+    <p style="margin-top:10px">Ngoài ra, quá trình xây dựng Portfolio đòi hỏi phải tổng hợp nhiều bài tập, lựa chọn hình ảnh minh chứng, sắp xếp nội dung và trình bày bố cục sao cho khoa học, thống nhất. Điều này khiến em phải dành nhiều thời gian để chỉnh sửa và hoàn thiện sản phẩm. Tuy nhiên, thông qua những khó khăn đó, em đã học được cách chủ động tìm hiểu, kiên trì và giải quyết vấn đề hiệu quả hơn.</p></div>
+  <div class="card"><h2>Định hướng phát triển</h2>
+    <p>Sau khi hoàn thành môn Công nghệ số và xây dựng Portfolio, em nhận thấy việc nâng cao kỹ năng sử dụng công nghệ là rất cần thiết trong học tập cũng như công việc sau này. Vì vậy, em sẽ tiếp tục tìm hiểu, thực hành và sử dụng thành thạo hơn các công cụ số, đặc biệt là những ứng dụng hỗ trợ học tập, thiết kế nội dung và làm việc nhóm.</p>
+    <p style="margin-top:10px">Bên cạnh đó, em sẽ chú trọng rèn luyện kỹ năng tìm kiếm, đánh giá thông tin và sử dụng trí tuệ nhân tạo một cách hiệu quả, có trách nhiệm, tránh phụ thuộc hoàn toàn vào AI. Em cũng mong muốn tiếp tục cập nhật và hoàn thiện Portfolio để lưu giữ những thành quả học tập của bản thân. Đặc biệt, em sẽ cố gắng vận dụng kiến thức công nghệ số vào việc thiết kế bài giảng, xây dựng học liệu và tổ chức các hoạt động giáo dục âm nhạc trong tương lai.</p></div>
+  <div class="card final"><span class="cat chibi-art" role="img" aria-label="Mèo chibi đáng yêu"></span><h2>Kết luận chung</h2>
+    <p>Qua quá trình học tập môn Công nghệ số và thực hiện Portfolio, em không chỉ được trang bị thêm kiến thức về công nghệ mà còn phát triển những kỹ năng quan trọng như tự học, sáng tạo, làm việc nhóm và quản lý thời gian. Mặc dù vẫn còn một số khó khăn trong quá trình thực hiện, nhưng những trải nghiệm này đã giúp em nhận ra điểm mạnh, điểm hạn chế và có thêm động lực để hoàn thiện bản thân.</p>
+    <p style="margin-top:10px">Đối với em, Portfolio không chỉ là sản phẩm tổng kết môn học mà còn là minh chứng cho quá trình cố gắng, học hỏi và tiến bộ của bản thân. Những kiến thức và kỹ năng tích lũy được sẽ là nền tảng hữu ích để em tiếp tục học tập và ứng dụng công nghệ vào công việc trong tương lai.</p></div>
+  <div class="summary-drive" aria-label="Mở thư mục bài tập trên Google Drive">
+    <div class="summary-drive-decor" aria-hidden="true">🌷 ✨ ☁️ ✨ 🌸</div>
+    <h3>Góc lưu giữ bài tập của em</h3>
+    <p>Thầy cô và các bạn có thể xem các bài tập và tài liệu của học phần tại thư mục Google Drive.</p>
+    <a class="drive-open-button" href="https://drive.google.com/drive/folders/1FohngBgSKUlGBNbJCZD9i0GSVKboKGMx?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Mở bài tập trong Google Drive (mở tab mới)"><span aria-hidden="true">📂</span><span>Mở bài tập</span><span aria-hidden="true">↗</span></a>
+    <div class="drive-flowers" aria-hidden="true">🌼 🌸 ✿ 🌷 🌺 ❀ 🌼</div>
+  </div>
+</section>
+</main>
+<section class="kitty-meadow" aria-label="Khu vườn mèo con dễ thương">
+ <p class="meadow-caption">🌈 Một khu vườn nhỏ của những giấc mơ và giai điệu ✨</p>
+ <div class="kitten-line"><span class="meadow-kitten"><span class="chibi-art" role="img" aria-label="Mèo chibi dễ thương số 1"></span></span><span class="meadow-kitten"><span class="chibi-art" role="img" aria-label="Mèo chibi dễ thương số 2"></span></span><span class="meadow-kitten"><span class="chibi-art" role="img" aria-label="Mèo chibi dễ thương số 3"></span></span><span class="meadow-kitten"><span class="chibi-art" role="img" aria-label="Mèo chibi dễ thương số 4"></span></span><span class="meadow-kitten"><span class="chibi-art" role="img" aria-label="Mèo chibi dễ thương số 5"></span></span><span class="meadow-kitten"><span class="chibi-art" role="img" aria-label="Mèo chibi dễ thương số 6"></span></span></div>
+ <p class="meadow-flora" aria-hidden="true">🌷 ✿ 🌼 ❀ 🪻 🌸 🌺 ❁ 🌻 ✿ 🌷</p>
+</section>
+
+<footer id="contact">
+  <div class="foot">
+    <div>
+      <div class="eyebrow">✿ LỜI NHẮN GỬI ✿</div>
+      <h2 class="big">Gửi một lời nhắn nhỏ đến khu vườn của mình nhé! 🌷</h2>
+      <form id="form">
+        <div class="row">
+          <div><label for="fn">Họ và tên (không bắt buộc)</label><input id="fn" type="text"></div>
+          <div><label for="fe">Email *</label><input id="fe" type="email" required></div>
+        </div>
+        <label for="fm" style="margin-top:22px">Nội dung góp ý *</label>
+        <textarea id="fm" required></textarea>
+        <button class="send" type="submit">Gửi góp ý</button>
+        <div class="status" id="status"></div>
+      </form>
+    </div>
+    <aside class="info">
+      <h3>Thông tin liên hệ</h3>
+      <small>EMAIL</small>
+      <div class="v">tongkhanhlinh1789@gmail.com</div>
+      <small>ĐIỆN THOẠI</small>
+      <div class="v">0349306401</div>
+      <hr>
+      <p>Cảm ơn thầy cô và các bạn đã ghé thăm portfolio cá nhân của Tống Khánh Linh. Mình rất mong nhận được những góp ý và chia sẻ để không ngừng hoàn thiện bản thân, phát triển kỹ năng âm nhạc và nâng cao năng lực nghề nghiệp trên hành trình trở thành một giáo viên âm nhạc trong tương lai.</p>
+    </aside>
+  </div>
+  <div class="copy">
+  <span class="copy-flower" aria-hidden="true">✿ ✨ 🌼 ✨ ✿</span>
+  <div class="copy-main">© 2026 Tống Khánh Linh <span class="copy-dot">•</span> Portfolio Nhập môn Công nghệ số</div>
+  <div class="copy-sub">🌈 Mỗi bài học là một sắc màu, mỗi trải nghiệm là một giai điệu đáng nhớ. ♡</div>
+</div>
+</footer>
+
+<span class="corner-cat chibi-art" id="cornerCat" role="button" tabindex="0" aria-label="Chạm vào mèo để thả sao lấp lánh"></span>
+
+
+
+<script>
+
+const tabs=document.querySelectorAll('.tab'),pages=document.querySelectorAll('.page');
+function show(id){
+  pages.forEach(p=>p.classList.toggle('show',p.id===id));
+  tabs.forEach(t=>t.classList.toggle('active',t.dataset.page===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  history.replaceState(null,'','#'+id);
+}
+tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.page)));
+if(['p1','p2','p3'].includes(location.hash.slice(1)))show(location.hash.slice(1));
+
+// ẢNH
+const av=document.getElementById('avatar'),img=document.getElementById('photo');
+const tries=['anh-chan-dung.jpg','anh-chan-dung.jpeg','anh-chan-dung.png','anh-chan-dung.webp'];
+let ti=0;
+img.onload=()=>av.classList.add('has');
+img.onerror=()=>{
+  ti++;
+  if(ti<tries.length){img.src=tries[ti];return;}
+  let saved=null;
+  try{saved=localStorage.getItem('klPhoto')}catch(_){ /* Chế độ xem trước có thể chặn lưu trữ */ }
+  if(saved){img.onerror=null;img.src=saved;}
+};
+img.src=tries[0];
+document.getElementById('file').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    const im=new Image();
+    im.onload=()=>{
+      const s=Math.min(1,900/im.height),c=document.createElement('canvas');
+      c.width=im.width*s;c.height=im.height*s;
+      c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+      const d=c.toDataURL('image/jpeg',.85);
+      try{localStorage.setItem('klPhoto',d)}catch(_){}
+      img.onerror=null;img.src=d;
+    };
+    im.src=r.result;
+  };
+  r.readAsDataURL(f);
+});
+
+
+// PDF: đọc theo yêu cầu; với bản GitHub, liên kết trực tiếp tới tệp PDF.
+// Bản độc lập giải mã thành từng phần, nhường lượt cho trình duyệt để không đơ.
+const pdfCache = new Map();
+const embeddedMode = !!document.getElementById('pdf-data-1');
+const idleFrame = () => new Promise(resolve => setTimeout(resolve, 0));
+async function getPdfURL(n){
+  if(!embeddedMode){
+    if(n===3){
+      if(pdfCache.has(n)) return pdfCache.get(n);
+      const paths=['bai-tap-3.part1','bai-tap-3.part2'];
+      const buffers=await Promise.all(paths.map(async path=>{
+        const res=await fetch(new URL(path,location.href));
+        if(!res.ok) throw new Error('Không tải được '+path);
+        return res.arrayBuffer();
+      }));
+      const link=URL.createObjectURL(new Blob(buffers,{type:'application/pdf'}));
+      pdfCache.set(n,link);
+      return link;
+    }
+    return new URL('bai-tap-' + n + '.pdf',location.href).href;
+  }
+  if(pdfCache.has(n)) return pdfCache.get(n);
+  const node = document.getElementById('pdf-data-' + n);
+  if(!node) throw new Error('Không tìm thấy bài tập ' + n);
+  const raw = node.textContent.replace(/\s+/g, '');
+  const chunks = [];
+  const step = 65536; // multiple of four, so base64 chunks decode independently
+  for(let offset = 0; offset < raw.length; offset += step){
+    const piece = atob(raw.slice(offset, offset + step));
+    const data = new Uint8Array(piece.length);
+    for(let j=0; j<piece.length; j++) data[j] = piece.charCodeAt(j);
+    chunks.push(data);
+    if((offset / step) % 3 === 2) await idleFrame();
+  }
+  const objectURL = URL.createObjectURL(new Blob(chunks, {type:'application/pdf'}));
+  pdfCache.set(n, objectURL);
+  return objectURL;
+}
+
+const previewEntries = [];
+function refreshPreviewState(){
+  document.documentElement.classList.toggle('preview-active',
+    previewEntries.some(x => x.box.classList.contains('open')));
+}
+function closePreview(entry){
+  entry.ticket++;
+  entry.box.classList.remove('open');
+  entry.box.replaceChildren(); // giải phóng trình xem PDF khi đóng
+  entry.button.textContent = '👁 Xem ngay';
+  entry.button.setAttribute('aria-expanded','false');
+  refreshPreviewState();
+}
+document.querySelectorAll('.proj[data-pdf]').forEach(card => {
+  const match = (card.dataset.pdf || '').match(/bai-tap-(\d+)\.pdf/);
+  if(!match) return;
+  const n=Number(match[1]);
+  const actions=document.createElement('div');actions.className='acts';
+  const open=document.createElement('button');open.className='btn';open.type='button';
+  open.textContent='📄 Mở file PDF';
+  open.setAttribute('aria-label','Mở PDF bài tập '+n+' trong tab mới');
+  const view=document.createElement('button');view.className='btn alt';view.type='button';
+  view.textContent='👁 Xem ngay';view.setAttribute('aria-expanded','false');
+  const box=document.createElement('div');box.className='viewer';
+  const entry={box,button:view,ticket:0};
+  previewEntries.push(entry);
+
+  open.addEventListener('click',async () => {
+    // Mở ngay trong sự kiện click để tránh popup blocker khi giải mã bất đồng bộ.
+    if(!embeddedMode && n!==3){
+      const a=document.createElement('a');a.href=card.dataset.pdf;a.target='_blank';a.rel='noopener noreferrer';
+      document.body.appendChild(a);a.click();a.remove();
+      return;
+    }
+    const newTab=window.open('about:blank','_blank');
+    if(newTab){
+      try{newTab.document.body.textContent='Đang chuẩn bị PDF bài tập '+n+'…';}catch(_){}
+    }
+    open.disabled=true;
+    try{
+      const url=await getPdfURL(n);
+      if(newTab && !newTab.closed){newTab.location.href=url;}
+      else{
+        const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
+        document.body.appendChild(a);a.click();a.remove();
+      }
+    }catch(err){
+      if(newTab && !newTab.closed) newTab.close();
+      alert('Không thể mở tài liệu: '+err.message);
+    }finally{open.disabled=false;}
+  });
+
+  view.addEventListener('click',async () => {
+    if(box.classList.contains('open')){closePreview(entry);return;}
+    previewEntries.forEach(other=>{if(other!==entry && other.box.classList.contains('open'))closePreview(other);});
+    box.classList.add('open');view.textContent='✖ Đóng';view.setAttribute('aria-expanded','true');
+    const ticket=++entry.ticket;
+    const loading=document.createElement('p');loading.className='pdf-loading';
+    loading.textContent='Đang tải bản xem trước…';box.appendChild(loading);
+    refreshPreviewState();
+    try{
+      const url=await getPdfURL(n);
+      if(ticket!==entry.ticket || !box.classList.contains('open')) return;
+      const iframe=document.createElement('iframe');iframe.title='Bản xem PDF bài tập '+n;
+      iframe.loading='lazy';iframe.src=url;
+      box.replaceChildren(iframe);
+    }catch(err){
+      if(ticket!==entry.ticket) return;
+      box.replaceChildren();
+      const error=document.createElement('p');error.className='pdf-loading';
+      error.textContent='Không thể xem tài liệu: '+err.message;
+      box.appendChild(error);
+    }
+  });
+  actions.append(open,view);card.append(actions,box);
+});
+// Không giữ PDF đang hiển thị khi người xem đổi trang: tiết kiệm RAM.
+tabs.forEach(tab=>tab.addEventListener('click',()=>previewEntries.forEach(entry=>{
+  if(entry.box.classList.contains('open')) closePreview(entry);
+})));
+
+// FORM
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=document.getElementById('fn').value||'Ẩn danh',m=document.getElementById('fe').value,t=document.getElementById('fm').value;
+  const body=`Họ tên: ${n}\nEmail: ${m}\n\nNội dung góp ý:\n${t}`;
+  location.href='mailto:tongkhanhlinh1789@gmail.com?subject='+encodeURIComponent('Góp ý portfolio')+'&body='+encodeURIComponent(body);
+  document.getElementById('status').textContent='Đang mở ứng dụng email để gửi góp ý…';
+});
+
+
+// Hoa, sao, mây và mèo: vẫn chuyển động nhưng chỉ tạo số lượng vừa đủ.
+const sky=document.getElementById('sky');
+const R=(a,b)=>a+Math.random()*(b-a);
+const isSmall=matchMedia('(max-width:700px)').matches;
+const prefersReduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const lowPower=(navigator.deviceMemory && navigator.deviceMemory<=4) ||
+  (navigator.hardwareConcurrency && navigator.hardwareConcurrency<=4);
+const motionFactor=prefersReduced?.15:(lowPower?.65:1);
+const amount=(desktop,mobile)=>Math.max(0,Math.round((isSmall?mobile:desktop)*motionFactor));
+const animated=document.createDocumentFragment();
+
+// Mây SVG chia sẻ một hình duy nhất, không tạo hiệu ứng blur nặng.
+for(let i=0;i<amount(12,8);i++){
+  const c=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  c.setAttribute('class','cloud'+(i%2?' backward':''));
+  c.setAttribute('viewBox','0 0 120 60');c.setAttribute('aria-hidden','true');
+  const use=document.createElementNS('http://www.w3.org/2000/svg','use');
+  use.setAttribute('href','#cloudS');c.appendChild(use);
+  const w=R(92,180),d=R(8.5,14.5);
+  c.style.width=w+'px';c.style.height=w/2+'px';
+  c.style.top=R(3,88)+'vh';c.style.left=R(4,90)+'vw';
+  c.style.setProperty('--cloud-speed',d+'s');
+  c.style.setProperty('--cloud-width',w+'px');
+  c.style.animationDelay=(-R(0,d))+'s';c.style.opacity=R(.35,.7);
+  animated.appendChild(c);
+}
+const flowers=['🌸','🌼','🌺','🌷','🪻','🌻','💮','❀','✿','❁','🏵️','🌹'];
+for(let i=0;i<amount(31,18);i++){
+  const f=document.createElement('span');f.className='float';
+  f.textContent=flowers[Math.floor(R(0,flowers.length))];
+  f.style.left=R(0,100)+'vw';f.style.fontSize=R(14,26)+'px';
+  const dur=R(14,27);f.style.animationDuration=dur+'s';
+  f.style.animationDelay=(-R(0,dur))+'s';animated.appendChild(f);
+}
+const stars=['✦','✧','✶','⋆','✳','❈'];
+for(let i=0;i<amount(42,23);i++){
+  const s=document.createElement('span');s.className='spark-fall '+(['','gold','lilac'][i%3]);
+  s.textContent=stars[Math.floor(R(0,stars.length))];
+  s.style.left=R(0,100)+'vw';s.style.fontSize=R(10,20)+'px';
+  const dur=R(12,25);s.style.animationDuration=dur+'s';
+  s.style.animationDelay=(-R(0,dur))+'s';animated.appendChild(s);
+}
+for(let i=0;i<amount(22,12);i++){
+  const star=document.createElement('span');star.className='twinkle';
+  star.textContent=i%3?'✦':'✧';
+  star.style.left=R(0,100)+'vw';star.style.top=R(0,100)+'vh';
+  star.style.fontSize=R(9,18)+'px';star.style.animationDelay=(-R(0,2.5))+'s';
+  animated.appendChild(star);
+}
+for(let i=0;i<amount(15,8);i++){
+  const star=document.createElement('span');star.className='glit';
+  star.style.left=R(0,100)+'vw';star.style.top=R(0,100)+'vh';
+  star.style.animationDelay=(-R(0,3))+'s';animated.appendChild(star);
+}
+for(let i=0;i<amount(10,6);i++){
+  const petal=document.createElement('span');petal.className='float petal-soft';
+  petal.textContent=['❀','✿','✾','🌸','❁'][i%5];
+  petal.style.left=R(0,100)+'vw';petal.style.fontSize=R(11,17)+'px';
+  const dur=R(19,31);petal.style.animationDuration=dur+'s';
+  petal.style.animationDelay=(-R(0,dur))+'s';animated.appendChild(petal);
+}
+sky.appendChild(animated); // Một lần cập nhật DOM thay vì hàng trăm lần
+
+// Lớp ngân hà: nhiều ánh sao nhưng chỉ dùng MỘT canvas (nhẹ hơn hàng trăm thẻ span).
+// Không sử dụng bóng blur đắt GPU; tự ngừng khi xem PDF, ẩn trang hay tạm dừng.
+const glitterCanvas=document.createElement('canvas');
+glitterCanvas.className='sparkle-canvas';
+glitterCanvas.setAttribute('aria-hidden','true');
+sky.insertBefore(glitterCanvas,sky.firstChild);
+const glitterCtx=glitterCanvas.getContext('2d',{alpha:true});
+const glitterColors=['#ffffff','#fff8c6','#ffe0f3','#f4c1ff','#c0e9ff','#ffffff','#f4c7ea'];
+let glitterDots=[],glitterW=0,glitterH=0,glitterFrame=0,lastGlitter=0;
+const glitterDensity=amount(138,76);
+function resizeGlitter(){
+  if(!glitterCtx)return;
+  glitterW=Math.max(1,innerWidth);glitterH=Math.max(1,innerHeight);
+  const pixelRatio=Math.min(devicePixelRatio||1,isSmall?1.2:1.5);
+  glitterCanvas.width=Math.round(glitterW*pixelRatio);
+  glitterCanvas.height=Math.round(glitterH*pixelRatio);
+  glitterCtx.setTransform(pixelRatio,0,0,pixelRatio,0,0);
+  glitterDots=Array.from({length:glitterDensity},(_,i)=>({
+    x:R(0,glitterW),y:R(0,glitterH),
+    radius:R(.8,3.6)*(i%7===0?1.35:1),
+    phase:R(0,Math.PI*2),speed:R(1.2,3.8),
+    vx:R(-3,3),vy:R(-4,6),
+    color:glitterColors[i%glitterColors.length],
+    cross:i%3!==0
+  }));
+  drawGlitter(0,false);
+}
+function drawGlitter(dt,move){
+  if(!glitterCtx)return;
+  const g=glitterCtx;
+  g.clearRect(0,0,glitterW,glitterH);
+  for(const p of glitterDots){
+    if(move){
+      p.phase+=dt*p.speed;
+      p.x=(p.x+p.vx*dt+glitterW)%glitterW;
+      p.y=(p.y+p.vy*dt+glitterH)%glitterH;
+    }
+    const shimmer=.32+.68*(.5+.5*Math.sin(p.phase));
+    const r=p.radius;
+    // Quầng nhỏ pastel + lõi sao trắng để lấp lánh cả trên nền sáng.
+    g.globalAlpha=shimmer*.23;g.fillStyle=p.color;
+    g.beginPath();g.arc(p.x,p.y,r*2.6,0,Math.PI*2);g.fill();
+    g.globalAlpha=shimmer*.86;g.fillStyle=p.color;
+    g.beginPath();g.arc(p.x,p.y,Math.max(.7,r*.52),0,Math.PI*2);g.fill();
+    if(p.cross){
+      g.globalAlpha=shimmer*.78;
+      g.fillRect(p.x-r*1.75,p.y-.55,r*3.5,1.1);
+      g.fillRect(p.x-.55,p.y-r*1.75,1.1,r*3.5);
+    }
+  }
+  g.globalAlpha=1;
+}
+function glitterShouldRun(){
+  const html=document.documentElement;
+  return !document.hidden && !html.classList.contains('motion-paused') &&
+    !html.classList.contains('preview-active') && !prefersReduced;
+}
+function animateGlitter(t){
+  glitterFrame=0;
+  if(!glitterShouldRun())return;
+  const elapsed=lastGlitter?Math.min(60,t-lastGlitter):40;
+  if(t-lastGlitter>=40){ // giới hạn tối đa ~25 hình/giây
+    drawGlitter(elapsed/1000,true);
+    lastGlitter=t;
+  }
+  glitterFrame=requestAnimationFrame(animateGlitter);
+}
+function updateGlitter(){
+  if(glitterFrame)cancelAnimationFrame(glitterFrame);
+  glitterFrame=0;lastGlitter=0;
+  if(glitterShouldRun())glitterFrame=requestAnimationFrame(animateGlitter);
+  else if(glitterCtx && document.documentElement.classList.contains('motion-paused'))drawGlitter(0,false);
+}
+resizeGlitter();updateGlitter();
+window.addEventListener('resize',()=>{resizeGlitter();updateGlitter();},{passive:true});
+document.addEventListener('visibilitychange',updateGlitter);
+// Bản xem PDF thay đổi lớp html.preview-active; ngừng vẽ khi mở PDF.
+const glitterObserver=new MutationObserver(updateGlitter);
+glitterObserver.observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+
+
+const catButton=document.getElementById('cornerCat');
+function catMagic(){
+  const bounds=catButton.getBoundingClientRect();
+  const emojis=['✦','❀','✧','🌸','★'];
+  for(let i=0;i<8;i++){
+    const el=document.createElement('span');el.textContent=emojis[i%emojis.length];
+    el.style.cssText=`position:fixed;left:${bounds.x+bounds.width*.5}px;top:${bounds.y+15}px;z-index:60;pointer-events:none;color:${['#f6a9dd','#c7b2ff','#ffdb8f'][i%3]};transition:950ms ease-out;font-size:${14+i%3*5}px`;
+    document.body.appendChild(el);
+    requestAnimationFrame(()=>{el.style.transform=`translate(${(Math.random()-.5)*160}px,${-Math.random()*155}px) rotate(260deg)`;el.style.opacity='0';});
+    el.addEventListener('transitionend',()=>el.remove(),{once:true});
+    setTimeout(()=>el.remove(),1100);
+  }
+}
+catButton.addEventListener('click',catMagic);
+catButton.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();catMagic();}
+});
+const toggle=document.createElement('button');toggle.type='button';toggle.className='motion-toggle';
+toggle.textContent='✨ Tạm dừng hiệu ứng';toggle.setAttribute('aria-pressed','false');
+toggle.title='Dừng hoặc bật hiệu ứng hoa, sao, mây, mèo và cầu vồng';
+document.body.appendChild(toggle);
+toggle.addEventListener('click',()=>{
+  const paused=document.documentElement.classList.toggle('motion-paused');
+  toggle.textContent=paused?'🌸 Bật lại hiệu ứng':'✨ Tạm dừng hiệu ứng';
+  toggle.setAttribute('aria-pressed',String(paused));
+});
+// Khi chuyển sang tab khác, mọi chuyển động dừng hoàn toàn.
+document.addEventListener('visibilitychange',()=>{
+  document.documentElement.classList.toggle('view-hidden',document.hidden);
+});
+
+
+
+// HOA + TRÁI CÂY TỪ ẢNH MẪU: bay/rơi liên tục, không thêm canvas hay interval mới.
+// Dùng các ảnh WebP đã cắt sẵn thay vì emoji để giữ nét vẽ pastel của ảnh gốc.
+const pastelKinds=['flower2','cherry','strawberry','flower','bow','strawberry2','flower2','heart'];
+const pastelFrag=document.createDocumentFragment();
+for(let i=0;i<amount(27,14);i++){
+ const kind=pastelKinds[i%pastelKinds.length];
+ const piece=document.createElement('span');
+ piece.className='pastel-fall '+kind;
+ piece.setAttribute('aria-hidden','true');
+ const size=R(kind==='cherry'?38:31,kind==='cherry'?67:58);
+ piece.style.width=size+'px';piece.style.height=size+'px';
+ const d=R(14,27);
+ piece.style.left=R(-3,97)+'vw';
+ piece.style.setProperty('--fall-speed',d+'s');
+ piece.style.animationDelay=(-R(0,d))+'s';
+ pastelFrag.appendChild(piece);
+}
+sky.appendChild(pastelFrag);
+
+</script>
+
+</body>
+</html>
