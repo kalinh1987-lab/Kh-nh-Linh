@@ -1,0 +1,48 @@
+name: Publish Portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+      - name: Verify website files
+        shell: bash
+        run: |
+          test -s index.html
+          for n in 1 2 4 5 6; do test -s "bai-tap-${n}.pdf"; done
+          test -s bai-tap-3.part1
+          test -s bai-tap-3.part2
+          python3 - <<'PY'
+          from pathlib import Path
+          for n in (1,2,4,5,6):
+              assert Path(f'bai-tap-{n}.pdf').read_bytes().startswith(b'%PDF-'), n
+          assert Path('bai-tap-3.part1').read_bytes().startswith(b'%PDF-')
+          print('Portfolio and all six PDF documents are present.')
+          PY
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+      - name: Deploy site
+        id: deployment
+        uses: actions/deploy-pages@v4
