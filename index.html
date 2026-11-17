@@ -867,11 +867,21 @@ document.getElementById('file').addEventListener('change',e=>{
 // Bản độc lập giải mã thành từng phần, nhường lượt cho trình duyệt để không đơ.
 const pdfCache = new Map();
 const embeddedMode = false;
-const PDF_BASE = 'https://cdn.jsdelivr.net/gh/kalinh1987-lab/Kh-nh-Linh@c4b2e62743798b5c2ad7a668f48e6e882aa6aaa7/';
+const PDF_BASE = location.protocol==='file:' || location.hostname==='htmlpreview.github.io'
+  ? 'https://cdn.jsdelivr.net/gh/kalinh1987-lab/Kh-nh-Linh@c4b2e62743798b5c2ad7a668f48e6e882aa6aaa7/'
+  : new URL('./',location.href).href;
 const idleFrame = () => new Promise(resolve => setTimeout(resolve, 0));
 async function getPdfURL(n){
   if(n !== 3) return PDF_BASE + 'bai-tap-' + n + '.pdf';
   if(pdfCache.has(3)) return pdfCache.get(3);
+  // Direct PDF for static hosts; fall back to joining the two GitHub source parts.
+  if(location.protocol !== 'file:') {
+    try {
+      const direct=PDF_BASE+'bai-tap-3.pdf';
+      const head=await fetch(direct,{method:'HEAD'});
+      if(head.ok) return direct;
+    } catch(_) {}
+  }
   // Bài 3 lưu thành 2 phần trong kho GitHub, ghép trở lại thành PDF.
   const paths = ['bai-tap-3.part1','bai-tap-3.part2'];
   const parts = await Promise.all(paths.map(async (file) => {
