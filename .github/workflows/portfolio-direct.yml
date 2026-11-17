@@ -35,6 +35,20 @@ jobs:
         run: |
           set -euo pipefail
           code=$(curl -sS --max-time 120 --retry 2 -o deploy-result.json -w '%{http_code}' -X POST 'https://ship.page/deploy' -H 'Content-Type: application/zip' --data-binary @site.zip)
-          cat deploy-result.json
-          echo "HTTP status: $code"
           [[ "$code" =~ ^2[0-9][0-9]$ ]]
+          # Report only the public URL, never the private claim token.
+          url=$(python3 - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('deploy-result.json').read_text())
+          assert obj.get('password_protected') is False
+          print(obj['url'])
+          PY
+          )
+          echo "PUBLIC_URL=$url"
+          # Verify that the site is actually reachable, not just accepted by the API.
+          status=$(curl -fsSL --retry 5 --retry-all-errors --retry-delay 2 --max-time 40 -o /tmp/portfolio-live.html -w '%{http_code}' "$url")
+          echo "LIVE_STATUS=$status"
+          [[ "$status" == "200" ]]
+          grep -q 'Tống Khánh Linh' /tmp/portfolio-live.html
+          echo "Website confirmed live with Portfolio content."
