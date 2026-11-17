@@ -1,0 +1,40 @@
+name: Publish direct Portfolio link (temporary)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - '.github/workflows/portfolio-direct.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and package site
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s index.html
+          for n in 1 2 4 5 6; do test -s "bai-tap-${n}.pdf"; done
+          cat bai-tap-3.part1 bai-tap-3.part2 > bai-tap-3.pdf
+          python3 - <<'PY'
+          from pathlib import Path
+          for n in range(1,7):
+              assert Path(f'bai-tap-{n}.pdf').read_bytes().startswith(b'%PDF-'), n
+          print('All 6 PDFs verified')
+          PY
+          zip -q site.zip index.html bai-tap-1.pdf bai-tap-2.pdf bai-tap-3.pdf bai-tap-4.pdf bai-tap-5.pdf bai-tap-6.pdf
+      - name: Publish temporary HTTPS page without login
+        shell: bash
+        run: |
+          set -euo pipefail
+          code=$(curl -sS --max-time 120 --retry 2 -o deploy-result.json -w '%{http_code}' -X POST 'https://ship.page/deploy' -H 'Content-Type: application/zip' --data-binary @site.zip)
+          cat deploy-result.json
+          echo "HTTP status: $code"
+          [[ "$code" =~ ^2[0-9][0-9]$ ]]
